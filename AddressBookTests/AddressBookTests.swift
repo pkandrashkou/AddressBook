@@ -1,11 +1,3 @@
-//
-//  AddressBookTests.swift
-//  AddressBookTests
-//
-//  Created by Pavel Kondrashkov on 11/5/19.
-//  Copyright © 2019 Pavel Kondrashkov. All rights reserved.
-//
-
 import XCTest
 @testable import AddressBook
 

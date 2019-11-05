@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		866ADBB82371F6FB00B5CA06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */; };
 		866ADBBA2371F6FB00B5CA06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866ADBB92371F6FB00B5CA06 /* ViewController.swift */; };
-		866ADBBD2371F6FB00B5CA06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBBB2371F6FB00B5CA06 /* Main.storyboard */; };
 		866ADBBF2371F6FC00B5CA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */; };
 		866ADBC22371F6FC00B5CA06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBC02371F6FC00B5CA06 /* LaunchScreen.storyboard */; };
 		866ADBCD2371F6FC00B5CA06 /* AddressBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866ADBCC2371F6FC00B5CA06 /* AddressBookTests.swift */; };
@@ -29,7 +28,6 @@
 		866ADBB42371F6FB00B5CA06 /* AddressBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		866ADBB92371F6FB00B5CA06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		866ADBBC2371F6FB00B5CA06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		866ADBC12371F6FC00B5CA06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		866ADBC32371F6FC00B5CA06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 			children = (
 				866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */,
 				866ADBB92371F6FB00B5CA06 /* ViewController.swift */,
-				866ADBBB2371F6FB00B5CA06 /* Main.storyboard */,
 				866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */,
 				866ADBC02371F6FC00B5CA06 /* LaunchScreen.storyboard */,
 				866ADBC32371F6FC00B5CA06 /* Info.plist */,
@@ -142,7 +139,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1030;
-				ORGANIZATIONNAME = "Pavel Kondrashkov";
+				ORGANIZATIONNAME = Touchlane;
 				TargetAttributes = {
 					866ADBB32371F6FB00B5CA06 = {
 						CreatedOnToolsVersion = 10.3;
@@ -179,7 +176,6 @@
 			files = (
 				866ADBC22371F6FC00B5CA06 /* LaunchScreen.storyboard in Resources */,
 				866ADBBF2371F6FC00B5CA06 /* Assets.xcassets in Resources */,
-				866ADBBD2371F6FB00B5CA06 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,14 +217,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		866ADBBB2371F6FB00B5CA06 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				866ADBBC2371F6FB00B5CA06 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		866ADBC02371F6FC00B5CA06 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -362,11 +350,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AddressBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.touchlane.AddressBook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.touchlane.addressbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -379,11 +368,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AddressBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.touchlane.AddressBook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.touchlane.addressbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
