@@ -16,7 +16,10 @@ final class ContactsListBuilderImpl: ContactsListBuilder {
     }
 
     func build() -> UIViewController {
-        let view = ContactsListViewController()
+
+        let interactor = ContactListInteractorImpl(contactsRepository: ContactsRepositoryStubImpl())
+        let viewModel = ContactsListViewModel(interactor: interactor)
+        let view = ContactsListViewController(viewModel: viewModel)
         let component = ContactsListComponent(dependency: dependency, parent: view)
         let addContactBuilder = AddContactBuilderImpl(dependency: component)
         let contactDetailsBuilder = ContactDetailsBuilderImpl(dependency: component)

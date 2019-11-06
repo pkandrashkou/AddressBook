@@ -45,6 +45,7 @@
 		8630672423732FE3003F7649 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672323732FE3003F7649 /* Font.swift */; };
 		8630672823733682003F7649 /* ContactLabelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672723733682003F7649 /* ContactLabelRow.swift */; };
 		8630672B2373374A003F7649 /* ContactTextFieldRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672A2373374A003F7649 /* ContactTextFieldRow.swift */; };
+		8630672D23733A97003F7649 /* ContactsRepositoryStubImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672C23733A97003F7649 /* ContactsRepositoryStubImpl.swift */; };
 		866ADBB82371F6FB00B5CA06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */; };
 		866ADBBF2371F6FC00B5CA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */; };
 		866ADBC22371F6FC00B5CA06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBC02371F6FC00B5CA06 /* LaunchScreen.storyboard */; };
@@ -101,6 +102,7 @@
 		8630672323732FE3003F7649 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		8630672723733682003F7649 /* ContactLabelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactLabelRow.swift; sourceTree = "<group>"; };
 		8630672A2373374A003F7649 /* ContactTextFieldRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTextFieldRow.swift; sourceTree = "<group>"; };
+		8630672C23733A97003F7649 /* ContactsRepositoryStubImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsRepositoryStubImpl.swift; sourceTree = "<group>"; };
 		866ADBB42371F6FB00B5CA06 /* AddressBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		863066C12371FD69003F7649 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				8630672C23733A97003F7649 /* ContactsRepositoryStubImpl.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				863066CA237201F3003F7649 /* ContactsListRouterImpl.swift in Sources */,
 				863066D723720D78003F7649 /* AppComponent.swift in Sources */,
 				8630672423732FE3003F7649 /* Font.swift in Sources */,
+				8630672D23733A97003F7649 /* ContactsRepositoryStubImpl.swift in Sources */,
 				863066D123720D1D003F7649 /* RootBuilderImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

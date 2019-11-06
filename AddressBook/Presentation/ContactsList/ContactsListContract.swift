@@ -16,10 +16,6 @@ protocol ContactsListCoordinator: AnyObject {
     func start()
 }
 
-protocol ContactsListViewModel: AnyObject {
-
-}
-
 protocol ContactsListRouter: AnyObject {
     func showContactDetails(id: String)
     func showAddNewContact()

@@ -6,7 +6,8 @@
 //  Copyright © 2019 Touchlane. All rights reserved.
 //
 
-import UIKit
+import RxCocoa
+import RxSwift
 import SnapKit
 
 final class ContactsListViewController: UIViewController {
@@ -22,8 +23,20 @@ final class ContactsListViewController: UIViewController {
         }
     }
 
-    private let tableView = UITableView()
+    private let tableView = ContactsListTableView()
     private let noContactsView = ContactsListNoContactsView()
+
+    private let viewModel: ContactsListViewModel
+    private let disposeBag = DisposeBag()
+
+    init(viewModel: ContactsListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     var router: ContactsListRouter!
 
@@ -31,10 +44,16 @@ final class ContactsListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Address Book"
-        updateState(state: .noContacts)
+        updateState(state: .hasContacts)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddButtonPress))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "details", style: .plain, target: self, action: #selector(self.onDetailsPress))
+
+        viewModel.output.contacts
+            .bind(to: tableView.rx.items(cellIdentifier: NSStringFromClass(UITableViewCell.self), cellType: UITableViewCell.self)) { (index, contact, cell) in
+                cell.textLabel?.font = Font.body
+                cell.textLabel?.text = "\(contact.firstName) \(contact.lastName)"
+        }.disposed(by: disposeBag)
     }
 
     @objc func onAddButtonPress() {
