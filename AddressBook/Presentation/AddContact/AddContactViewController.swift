@@ -33,7 +33,8 @@ final class AddContactViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
 
         scrollView.addSubview(contentView)
@@ -64,7 +65,7 @@ final class AddContactViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(40)
             $0.leading.trailing.equalToSuperview().inset(32)
-            buttonBottomConstrain = $0.bottom.equalTo(contentView.safeAreaLayoutGuide.snp.bottom).inset(buttonBottomInset).constraint
+            buttonBottomConstrain = $0.bottom.equalToSuperview().inset(buttonBottomInset).constraint
         }
     }
 
@@ -129,16 +130,16 @@ private extension AddContactViewController {
 
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo as? [String: Any] else { return }
-        let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue
+        let keyboardInfo = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         guard let keyboardSize = keyboardInfo?.cgRectValue.size else { return }
-
 
         let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0
         let curveRaw = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt
         let curve: UIView.AnimationOptions = curveRaw.map { UIView.AnimationOptions(rawValue: $0) } ?? .curveLinear
 
         self.view.setNeedsLayout()
-        self.buttonBottomConstrain.update(inset: self.buttonBottomInset + keyboardSize.height)
+        let inset = self.buttonBottomInset + keyboardSize.height
+        self.buttonBottomConstrain.update(inset: inset)
         UIView.animate(withDuration: duration, delay: 0, options: curve, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
