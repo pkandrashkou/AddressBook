@@ -14,7 +14,7 @@ final class ContactsListViewController: UIViewController {
     private enum State {
         case loading
         case noContacts
-        case hasContacts
+        case contacts([Contact])
     }
 
     private var state: State = .loading {
@@ -44,12 +44,22 @@ final class ContactsListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Address Book"
-        updateState(state: .hasContacts)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddButtonPress))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "details", style: .plain, target: self, action: #selector(self.onDetailsPress))
+        updateState(state: .noContacts)
+
 
         viewModel.output.contacts
+//            .map { contacts -> State in
+//                if contacts.isEmpty {
+//                    return .noContacts
+//                } else {
+//                    return .contacts(contacts)
+//                }
+//            }
+//            .bind(to: { (Observable<ContactsListViewController.State>) -> Result in
+//                <#code#>
+//            })
             .bind(to: tableView.rx.items(cellIdentifier: NSStringFromClass(UITableViewCell.self), cellType: UITableViewCell.self)) { (index, contact, cell) in
                 cell.textLabel?.font = Font.body
                 cell.textLabel?.text = "\(contact.firstName) \(contact.lastName)"
@@ -71,7 +81,7 @@ final class ContactsListViewController: UIViewController {
             tableView.snp.removeConstraints()
             noContactsView.removeFromSuperview()
             noContactsView.snp.removeConstraints()
-        case .hasContacts:
+        case .contacts:
             view.addSubview(tableView)
             tableView.snp.makeConstraints {
                 $0.edges.equalToSuperview()

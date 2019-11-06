@@ -31,17 +31,17 @@ final class AddContactViewController: UIViewController {
         view = UIView()
 
         view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        scrollView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
 
         scrollView.addSubview(contentView)
-        contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.width.equalToSuperview()
-            make.height.equalToSuperview().priority(.low)
+        contentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.height.equalToSuperview().priority(.low)
         }
 
         let stackView = UIStackView()
@@ -112,10 +112,12 @@ final class AddContactViewController: UIViewController {
 
 private extension AddContactViewController {
     @objc func onClose() {
+        view.endEditing(true)
         router.close()
     }
 
     @objc func onSave() {
+        view.endEditing(true)
         router.close()
     }
 
