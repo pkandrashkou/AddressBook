@@ -9,11 +9,7 @@
 import UIKit
 
 protocol AddContactDependency {
-    var parent: UIViewController { get }
-}
-
-protocol AddContactCoordinatorProvidable: AnyObject {
-    var coordinator: AddContactCoordinator! { get }
+//    var parent: UIViewController { get }
 }
 
 protocol AddContactCoordinator: AnyObject {

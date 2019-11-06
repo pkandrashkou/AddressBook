@@ -11,8 +11,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let component = AppComponent(window: window!)
         let windowScene = WindowScene(window: window!)
-        let rootView = RootBuilderImpl(dependency: component).build()
+//        let rootView = RootBuilderImpl(dependency: component).build()
+        struct Dependency: AddContactDependency {
+//            var parent: UIViewController
+        }
+        let rootView = AddContactBuilderImpl(dependency: Dependency()).build(listener: self)
         windowScene.play(view: rootView)
         return true
     }
+}
+
+extension AppDelegate: AddContactListener {
+    func onAddedContact() {
+        //noop
+    }
+
+
 }

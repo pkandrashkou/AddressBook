@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-platform :ios, '10.0'
+platform :ios, '12.0'
 use_frameworks!
 
 def common_pods
