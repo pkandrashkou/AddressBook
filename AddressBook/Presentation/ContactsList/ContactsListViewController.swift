@@ -33,7 +33,7 @@ final class ContactsListViewController: UIViewController {
         navigationItem.title = "Address Book"
         updateState(state: .noContacts)
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "add", style: .plain, target: self, action: #selector(self.onAddButtonPress))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddButtonPress))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "details", style: .plain, target: self, action: #selector(self.onDetailsPress))
     }
 

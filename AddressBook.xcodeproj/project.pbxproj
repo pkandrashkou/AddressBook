@@ -40,9 +40,12 @@
 		863067132372E4FB003F7649 /* AddContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863067122372E4FB003F7649 /* AddContactInteractor.swift */; };
 		863067152372EED5003F7649 /* ContactsListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863067142372EED5003F7649 /* ContactsListTableView.swift */; };
 		863067172372F5F7003F7649 /* ContactsListNoContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863067162372F5F7003F7649 /* ContactsListNoContactsView.swift */; };
-		8630671A237316C8003F7649 /* ContactTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86306719237316C8003F7649 /* ContactTextField.swift */; };
 		8630671C237316FA003F7649 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630671B237316FA003F7649 /* SeparatorView.swift */; };
 		8630671E23731885003F7649 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630671D23731885003F7649 /* Color.swift */; };
+		8630672223732D27003F7649 /* SolidNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672123732D27003F7649 /* SolidNavigationController.swift */; };
+		8630672423732FE3003F7649 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672323732FE3003F7649 /* Font.swift */; };
+		8630672823733682003F7649 /* ContactLabelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672723733682003F7649 /* ContactLabelRow.swift */; };
+		8630672B2373374A003F7649 /* ContactTextFieldRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672A2373374A003F7649 /* ContactTextFieldRow.swift */; };
 		866ADBB82371F6FB00B5CA06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */; };
 		866ADBBF2371F6FC00B5CA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */; };
 		866ADBC22371F6FC00B5CA06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBC02371F6FC00B5CA06 /* LaunchScreen.storyboard */; };
@@ -94,9 +97,12 @@
 		863067122372E4FB003F7649 /* AddContactInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactInteractor.swift; sourceTree = "<group>"; };
 		863067142372EED5003F7649 /* ContactsListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListTableView.swift; sourceTree = "<group>"; };
 		863067162372F5F7003F7649 /* ContactsListNoContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListNoContactsView.swift; sourceTree = "<group>"; };
-		86306719237316C8003F7649 /* ContactTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTextField.swift; sourceTree = "<group>"; };
 		8630671B237316FA003F7649 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		8630671D23731885003F7649 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		8630672123732D27003F7649 /* SolidNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolidNavigationController.swift; sourceTree = "<group>"; };
+		8630672323732FE3003F7649 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		8630672723733682003F7649 /* ContactLabelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactLabelRow.swift; sourceTree = "<group>"; };
+		8630672A2373374A003F7649 /* ContactTextFieldRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTextFieldRow.swift; sourceTree = "<group>"; };
 		866ADBB42371F6FB00B5CA06 /* AddressBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -151,8 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				863067042372DB68003F7649 /* Common */,
-				863066F32372BA18003F7649 /* ContactDetails */,
 				863066CF23720D13003F7649 /* Root */,
+				863066F32372BA18003F7649 /* ContactDetails */,
 				863066E42372B07D003F7649 /* AddContact */,
 				863066CE23720D0C003F7649 /* ContactsList */,
 			);
@@ -171,8 +177,7 @@
 		863066CE23720D0C003F7649 /* ContactsList */ = {
 			isa = PBXGroup;
 			children = (
-				863067142372EED5003F7649 /* ContactsListTableView.swift */,
-				863067162372F5F7003F7649 /* ContactsListNoContactsView.swift */,
+				863067252373348B003F7649 /* UI */,
 				863066D823720EB4003F7649 /* ContactsListContract.swift */,
 				863066F12372B6AC003F7649 /* ContactsListComponent.swift */,
 				863066C323720024003F7649 /* ContactsListViewController.swift */,
@@ -211,6 +216,7 @@
 		863066F32372BA18003F7649 /* ContactDetails */ = {
 			isa = PBXGroup;
 			children = (
+				863067262373366D003F7649 /* UI */,
 				863066F82372BA40003F7649 /* ContactDetailsContract.swift */,
 				863066F62372BA40003F7649 /* ContactDetailsCoordinatorImpl.swift */,
 				863066F72372BA40003F7649 /* ContactDetailsViewController.swift */,
@@ -223,10 +229,10 @@
 		863067042372DB68003F7649 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				86306729237336C9003F7649 /* UI */,
 				863067052372DB77003F7649 /* NavigationScene.swift */,
 				863067072372DBA8003F7649 /* PresentationScene.swift */,
 				863067092372DC38003F7649 /* WindowScene.swift */,
-				8630671D23731885003F7649 /* Color.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -259,8 +265,35 @@
 		86306718237316BA003F7649 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				86306719237316C8003F7649 /* ContactTextField.swift */,
+				8630672A2373374A003F7649 /* ContactTextFieldRow.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		863067252373348B003F7649 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				863067142372EED5003F7649 /* ContactsListTableView.swift */,
+				863067162372F5F7003F7649 /* ContactsListNoContactsView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		863067262373366D003F7649 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8630672723733682003F7649 /* ContactLabelRow.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		86306729237336C9003F7649 /* UI */ = {
+			isa = PBXGroup;
+			children = (
 				8630671B237316FA003F7649 /* SeparatorView.swift */,
+				8630672123732D27003F7649 /* SolidNavigationController.swift */,
+				8630671D23731885003F7649 /* Color.swift */,
+				8630672323732FE3003F7649 /* Font.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -518,14 +551,16 @@
 				863066FF2372BA40003F7649 /* ContactDetailsContract.swift in Sources */,
 				863066D923720EB4003F7649 /* ContactsListContract.swift in Sources */,
 				8630671C237316FA003F7649 /* SeparatorView.swift in Sources */,
+				8630672823733682003F7649 /* ContactLabelRow.swift in Sources */,
 				863066E82372B0A3003F7649 /* AddContactViewController.swift in Sources */,
 				863066EA2372B0B0003F7649 /* AddContactViewModelImpl.swift in Sources */,
 				863067152372EED5003F7649 /* ContactsListTableView.swift in Sources */,
 				8630670A2372DC38003F7649 /* WindowScene.swift in Sources */,
 				863066EE2372B0CA003F7649 /* AddContactRouterImpl.swift in Sources */,
-				8630671A237316C8003F7649 /* ContactTextField.swift in Sources */,
+				8630672B2373374A003F7649 /* ContactTextFieldRow.swift in Sources */,
 				863066C6237201DC003F7649 /* ContactsListViewModelImpl.swift in Sources */,
 				863067132372E4FB003F7649 /* AddContactInteractor.swift in Sources */,
+				8630672223732D27003F7649 /* SolidNavigationController.swift in Sources */,
 				863066E3237216BB003F7649 /* RootComponent.swift in Sources */,
 				863066DF2372152A003F7649 /* RootViewController.swift in Sources */,
 				863066DD2372145A003F7649 /* RootContract.swift in Sources */,
@@ -547,6 +582,7 @@
 				863067062372DB77003F7649 /* NavigationScene.swift in Sources */,
 				863066CA237201F3003F7649 /* ContactsListRouterImpl.swift in Sources */,
 				863066D723720D78003F7649 /* AppComponent.swift in Sources */,
+				8630672423732FE3003F7649 /* Font.swift in Sources */,
 				863066D123720D1D003F7649 /* RootBuilderImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

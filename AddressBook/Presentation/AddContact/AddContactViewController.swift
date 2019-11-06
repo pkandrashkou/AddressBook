@@ -12,11 +12,11 @@ import RxSwift
 import RxCocoa
 
 final class AddContactViewController: UIViewController {
-    private let firstNameTextField = ContactTextField()
-    private let lastNameTextField = ContactTextField()
-    private let emailTextField = ContactTextField()
-    private let phoneNumberTextField = ContactTextField()
-    private let addressTextView = ContactTextField()
+    private let firstNameTextField = ContactTextFieldRow()
+    private let lastNameTextField = ContactTextFieldRow()
+    private let emailTextField = ContactTextFieldRow()
+    private let phoneNumberTextField = ContactTextFieldRow()
+    private let addressTextView = ContactTextFieldRow()
 
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -77,6 +77,7 @@ final class AddContactViewController: UIViewController {
 
         navigationItem.title = "New Contact"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.onClose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(self.onSave))
 
         firstNameTextField.textField.placeholder = "First Name"
         lastNameTextField.textField.placeholder = "Last Name"
@@ -84,6 +85,8 @@ final class AddContactViewController: UIViewController {
         phoneNumberTextField.textField.placeholder = "Phone"
         addressTextView.textField.placeholder = "Address"
 
+        saveButton.layer.cornerRadius = 5
+        saveButton.titleLabel?.font = Font.body
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.setTitle("Save", for: .normal)
         saveButton.backgroundColor = Color.teal
@@ -108,6 +111,18 @@ final class AddContactViewController: UIViewController {
 }
 
 private extension AddContactViewController {
+    @objc func onClose() {
+        router.close()
+    }
+
+    @objc func onSave() {
+        router.close()
+    }
+
+    @objc func onViewTap() {
+        view.endEditing(true)
+    }
+
     func registerKeyboardNotifications() {
         NotificationCenter.default.addObserver(
             self,
@@ -157,13 +172,5 @@ private extension AddContactViewController {
         UIView.animate(withDuration: duration, delay: 0, options: curve, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
-    }
-
-    @objc func onClose() {
-        router.close()
-    }
-
-    @objc func onViewTap() {
-        view.endEditing(true)
     }
 }

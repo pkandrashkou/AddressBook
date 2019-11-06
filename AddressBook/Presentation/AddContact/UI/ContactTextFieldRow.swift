@@ -11,9 +11,24 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class ContactTextField: UIView {
+final class ContactTextFieldRow: UIView {
+    final class TextField: UITextField {
+        override var placeholder: String? {
+            get { return super.placeholder }
+            set {
+                guard let newValue = newValue else { return }
+                let attributes = [
+                    NSAttributedString.Key.foregroundColor: Color.gray2,
+                    NSAttributedString.Key.font : Font.caption
+                ]
+                self.attributedPlaceholder = NSAttributedString(string: newValue, attributes: attributes)
+            }
+        }
+    }
+
+
     private let disposeBag = DisposeBag()
-    let textField = UITextField()
+    let textField = TextField()
     let clearButton = UIButton(type: .system)
     let separator = SeparatorView()
 
@@ -21,11 +36,12 @@ final class ContactTextField: UIView {
         super.init(frame: frame)
 
         textField.autocorrectionType = .no
+        textField.font = Font.caption
         addSubview(textField)
         textField.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(12)
+            $0.top.equalToSuperview().offset(16)
             $0.leading.equalToSuperview().offset(16)
-            $0.bottom.equalToSuperview().offset(-12)
+            $0.bottom.equalToSuperview().offset(-16)
         }
 
         textField.rx.text.orEmpty

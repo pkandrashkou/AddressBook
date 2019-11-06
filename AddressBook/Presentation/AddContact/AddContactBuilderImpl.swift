@@ -17,7 +17,7 @@ final class AddContactBuilderImpl: AddContactBuilder {
 
     func build(listener: AddContactListener) -> UIViewController {
         let view = AddContactViewController()
-        let container = UINavigationController()
+        let container = SolidNavigationController()
         container.viewControllers = [view]
         let router = AddContactRouterImpl(listener: listener)
 //        let coordinator = AddContactCoordinatorImpl(parent: dependency.parent, view: view)

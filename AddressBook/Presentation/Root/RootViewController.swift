@@ -14,6 +14,9 @@ final class RootViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBar.isTranslucent = false
+        navigationBar.prefersLargeTitles = true
+
         router.showContactsList()
     }
 }
