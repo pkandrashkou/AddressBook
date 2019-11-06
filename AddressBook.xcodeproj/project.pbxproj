@@ -40,6 +40,9 @@
 		863067132372E4FB003F7649 /* AddContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863067122372E4FB003F7649 /* AddContactInteractor.swift */; };
 		863067152372EED5003F7649 /* ContactsListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863067142372EED5003F7649 /* ContactsListTableView.swift */; };
 		863067172372F5F7003F7649 /* ContactsListNoContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863067162372F5F7003F7649 /* ContactsListNoContactsView.swift */; };
+		8630671A237316C8003F7649 /* ContactTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86306719237316C8003F7649 /* ContactTextField.swift */; };
+		8630671C237316FA003F7649 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630671B237316FA003F7649 /* SeparatorView.swift */; };
+		8630671E23731885003F7649 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630671D23731885003F7649 /* Color.swift */; };
 		866ADBB82371F6FB00B5CA06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */; };
 		866ADBBF2371F6FC00B5CA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */; };
 		866ADBC22371F6FC00B5CA06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBC02371F6FC00B5CA06 /* LaunchScreen.storyboard */; };
@@ -91,6 +94,9 @@
 		863067122372E4FB003F7649 /* AddContactInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactInteractor.swift; sourceTree = "<group>"; };
 		863067142372EED5003F7649 /* ContactsListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListTableView.swift; sourceTree = "<group>"; };
 		863067162372F5F7003F7649 /* ContactsListNoContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListNoContactsView.swift; sourceTree = "<group>"; };
+		86306719237316C8003F7649 /* ContactTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTextField.swift; sourceTree = "<group>"; };
+		8630671B237316FA003F7649 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		8630671D23731885003F7649 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		866ADBB42371F6FB00B5CA06 /* AddressBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 		863066E42372B07D003F7649 /* AddContact */ = {
 			isa = PBXGroup;
 			children = (
+				86306718237316BA003F7649 /* UI */,
 				863066E52372B097003F7649 /* AddContactContract.swift */,
 				863066E72372B0A3003F7649 /* AddContactViewController.swift */,
 				863066E92372B0B0003F7649 /* AddContactViewModelImpl.swift */,
@@ -219,6 +226,7 @@
 				863067052372DB77003F7649 /* NavigationScene.swift */,
 				863067072372DBA8003F7649 /* PresentationScene.swift */,
 				863067092372DC38003F7649 /* WindowScene.swift */,
+				8630671D23731885003F7649 /* Color.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -246,6 +254,15 @@
 				8630670E2372E343003F7649 /* Contact.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		86306718237316BA003F7649 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				86306719237316C8003F7649 /* ContactTextField.swift */,
+				8630671B237316FA003F7649 /* SeparatorView.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		866ADBAB2371F6FB00B5CA06 = {
@@ -500,11 +517,13 @@
 				863066CC23720200003F7649 /* ContactsListBuilderImpl.swift in Sources */,
 				863066FF2372BA40003F7649 /* ContactDetailsContract.swift in Sources */,
 				863066D923720EB4003F7649 /* ContactsListContract.swift in Sources */,
+				8630671C237316FA003F7649 /* SeparatorView.swift in Sources */,
 				863066E82372B0A3003F7649 /* AddContactViewController.swift in Sources */,
 				863066EA2372B0B0003F7649 /* AddContactViewModelImpl.swift in Sources */,
 				863067152372EED5003F7649 /* ContactsListTableView.swift in Sources */,
 				8630670A2372DC38003F7649 /* WindowScene.swift in Sources */,
 				863066EE2372B0CA003F7649 /* AddContactRouterImpl.swift in Sources */,
+				8630671A237316C8003F7649 /* ContactTextField.swift in Sources */,
 				863066C6237201DC003F7649 /* ContactsListViewModelImpl.swift in Sources */,
 				863067132372E4FB003F7649 /* AddContactInteractor.swift in Sources */,
 				863066E3237216BB003F7649 /* RootComponent.swift in Sources */,
@@ -517,6 +536,7 @@
 				863066E62372B097003F7649 /* AddContactContract.swift in Sources */,
 				863066F22372B6AC003F7649 /* ContactsListComponent.swift in Sources */,
 				863066FE2372BA40003F7649 /* ContactDetailsViewController.swift in Sources */,
+				8630671E23731885003F7649 /* Color.swift in Sources */,
 				863067082372DBA8003F7649 /* PresentationScene.swift in Sources */,
 				8630670F2372E343003F7649 /* Contact.swift in Sources */,
 				863066F02372B0D3003F7649 /* AddContactBuilderImpl.swift in Sources */,
