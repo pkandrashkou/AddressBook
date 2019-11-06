@@ -18,9 +18,9 @@ final class ContactLabelRow: UIView {
         label.font = Font.caption
         addSubview(label)
         label.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
+            $0.top.equalToSuperview().offset(12)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview().offset(-16)
+            $0.bottom.equalToSuperview().offset(-12)
         }
 
         addSubview(separator)

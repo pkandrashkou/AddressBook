@@ -28,7 +28,6 @@
 		863066F02372B0D3003F7649 /* AddContactBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863066EF2372B0D3003F7649 /* AddContactBuilderImpl.swift */; };
 		863066F22372B6AC003F7649 /* ContactsListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863066F12372B6AC003F7649 /* ContactsListComponent.swift */; };
 		863066F52372BA39003F7649 /* ContactDetailsBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863066F42372BA39003F7649 /* ContactDetailsBuilderImpl.swift */; };
-		863066FD2372BA40003F7649 /* ContactDetailsCoordinatorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863066F62372BA40003F7649 /* ContactDetailsCoordinatorImpl.swift */; };
 		863066FE2372BA40003F7649 /* ContactDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863066F72372BA40003F7649 /* ContactDetailsViewController.swift */; };
 		863066FF2372BA40003F7649 /* ContactDetailsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863066F82372BA40003F7649 /* ContactDetailsContract.swift */; };
 		863067002372BA40003F7649 /* ContactDetailsViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863066F92372BA40003F7649 /* ContactDetailsViewModelImpl.swift */; };
@@ -85,7 +84,6 @@
 		863066EF2372B0D3003F7649 /* AddContactBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactBuilderImpl.swift; sourceTree = "<group>"; };
 		863066F12372B6AC003F7649 /* ContactsListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListComponent.swift; sourceTree = "<group>"; };
 		863066F42372BA39003F7649 /* ContactDetailsBuilderImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetailsBuilderImpl.swift; sourceTree = "<group>"; };
-		863066F62372BA40003F7649 /* ContactDetailsCoordinatorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetailsCoordinatorImpl.swift; sourceTree = "<group>"; };
 		863066F72372BA40003F7649 /* ContactDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewController.swift; sourceTree = "<group>"; };
 		863066F82372BA40003F7649 /* ContactDetailsContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetailsContract.swift; sourceTree = "<group>"; };
 		863066F92372BA40003F7649 /* ContactDetailsViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewModelImpl.swift; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 			children = (
 				863067262373366D003F7649 /* UI */,
 				863066F82372BA40003F7649 /* ContactDetailsContract.swift */,
-				863066F62372BA40003F7649 /* ContactDetailsCoordinatorImpl.swift */,
 				863066F72372BA40003F7649 /* ContactDetailsViewController.swift */,
 				863066F92372BA40003F7649 /* ContactDetailsViewModelImpl.swift */,
 				863066F42372BA39003F7649 /* ContactDetailsBuilderImpl.swift */,
@@ -567,7 +564,6 @@
 				863066F52372BA39003F7649 /* ContactDetailsBuilderImpl.swift in Sources */,
 				863066D323720D2D003F7649 /* RootRouterImpl.swift in Sources */,
 				863066C8237201E5003F7649 /* ContactListInteractor.swift in Sources */,
-				863066FD2372BA40003F7649 /* ContactDetailsCoordinatorImpl.swift in Sources */,
 				863066E62372B097003F7649 /* AddContactContract.swift in Sources */,
 				863066F22372B6AC003F7649 /* ContactsListComponent.swift in Sources */,
 				863066FE2372BA40003F7649 /* ContactDetailsViewController.swift in Sources */,

@@ -39,9 +39,9 @@ final class ContactTextFieldRow: UIView {
         textField.font = Font.caption
         addSubview(textField)
         textField.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
+            $0.top.equalToSuperview().offset(12)
             $0.leading.equalToSuperview().offset(16)
-            $0.bottom.equalToSuperview().offset(-16)
+            $0.bottom.equalToSuperview().offset(-12)
         }
 
         textField.rx.text.orEmpty

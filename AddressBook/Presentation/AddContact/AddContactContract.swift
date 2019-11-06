@@ -8,9 +8,7 @@
 
 import UIKit
 
-protocol AddContactDependency {
-//    var parent: UIViewController { get }
-}
+protocol AddContactDependency { }
 
 protocol AddContactCoordinator: AnyObject {
     func start()

@@ -8,17 +8,7 @@
 
 import UIKit
 
-protocol ContactDetailsDependency {
-    var parent: UIViewController { get }
-}
-
-protocol ContactDetailsCoordinator: AnyObject {
-    func start()
-}
-
-protocol ContactDetailsCoordinatorProvidable: AnyObject {
-    var coordinator: ContactDetailsCoordinator! { get }
-}
+protocol ContactDetailsDependency { }
 
 protocol ContactDetailsViewModel: AnyObject {
 

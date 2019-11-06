@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ContactDetailsViewController: UIViewController, ContactDetailsCoordinatorProvidable {
+final class ContactDetailsViewController: UIViewController {
     private let firstName = ContactLabelRow()
     private let lastName = ContactLabelRow()
     private let email = ContactLabelRow()
@@ -18,11 +18,9 @@ final class ContactDetailsViewController: UIViewController, ContactDetailsCoordi
     private let scrollView = UIScrollView()
     private let contentView = UIView()
 
-
-    var coordinator: ContactDetailsCoordinator!
-
     override func loadView() {
         view = UIView()
+        view.backgroundColor = .white
 
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
@@ -57,7 +55,6 @@ final class ContactDetailsViewController: UIViewController, ContactDetailsCoordi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
 
         navigationItem.title = "Joshua Smith"
         address.label.numberOfLines = 0

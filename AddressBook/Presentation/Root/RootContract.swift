@@ -23,7 +23,3 @@ protocol RootRouter: AnyObject {
 protocol RootViewModel {
 
 }
-
-protocol RootCoordinator: AnyObject {
-    func start()
-}
