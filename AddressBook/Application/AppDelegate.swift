@@ -10,8 +10,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         let component = AppComponent(window: window!)
-        launchCoordinator = RootBuilderImpl(dependency: component).build()
-        launchCoordinator?.start()
+        let windowScene = WindowScene(window: window!)
+        let rootView = RootBuilderImpl(dependency: component).build()
+        windowScene.play(view: rootView)
         return true
     }
 }

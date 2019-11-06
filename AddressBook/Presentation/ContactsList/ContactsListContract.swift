@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ContactsListDependency {
-    var parent: UIViewController { get }
+    var parent: UINavigationController { get }
 }
 
 protocol ContactsListCoordinator: AnyObject {
@@ -26,5 +26,5 @@ protocol ContactsListRouter: AnyObject {
 }
 
 protocol ContactsListBuilder {
-    func build() -> ContactsListCoordinator
+    func build() -> UIViewController
 }

@@ -15,12 +15,13 @@ class RootBuilderImpl: RootBuilder {
         self.dependency = dependency
     }
 
-    func build() -> RootCoordinator {
+    func build() -> UIViewController {
         let view = RootViewController()
         let component = RootComponent(dependency: dependency, parent: view)
         let contactsListBuilder = ContactsListBuilderImpl(dependency: component)
-        let router = RootRouterImpl(contactsListBuilder: contactsListBuilder)
+        let scene = NavigationScene(parent: view)
+        let router = RootRouterImpl(scene: scene, contactsListBuilder: contactsListBuilder)
         view.router = router /// change later
-        return RootCoordinatorImpl(window: dependency.window, view: view)
+        return view
     }
 }

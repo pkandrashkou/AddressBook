@@ -10,9 +10,9 @@ import UIKit
 
 final class RootComponent: ContactsListDependency {
     private let dependency: RootDependency
-    let parent: UIViewController
+    let parent: UINavigationController
 
-    init(dependency: RootDependency, parent: UIViewController) {
+    init(dependency: RootDependency, parent: UINavigationController) {
         self.dependency = dependency
         self.parent = parent
     }

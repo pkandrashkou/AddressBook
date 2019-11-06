@@ -7,14 +7,16 @@
 //
 
 final class RootRouterImpl: RootRouter {
+    private let scene: NavigationScene
     private let contactsListBuilder: ContactsListBuilder
 
-    init(contactsListBuilder: ContactsListBuilder) {
+    init(scene: NavigationScene, contactsListBuilder: ContactsListBuilder) {
+        self.scene = scene
         self.contactsListBuilder = contactsListBuilder
     }
 
     func showContactsList() {
-        let coordinator = contactsListBuilder.build()
-        coordinator.start()
+        let view = contactsListBuilder.build()
+        scene.play(view: view)
     }
 }
