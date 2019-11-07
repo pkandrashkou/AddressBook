@@ -16,10 +16,8 @@ final class ContactsListBuilderImpl: ContactsListBuilder {
     }
 
     func build() -> UIViewController {
-
-        let interactor = ContactListInteractorImpl(contactsRepository: ContactsRepositoryStubImpl())
-        let viewModel = ContactsListViewModel(interactor: interactor)
-        let view = ContactsListViewController(viewModel: viewModel)
+        let view = ContactsListViewController()
+        
         let component = ContactsListComponent(dependency: dependency, parent: view)
         let addContactBuilder = AddContactBuilderImpl(dependency: component)
         let contactDetailsBuilder = ContactDetailsBuilderImpl(dependency: component)
@@ -33,7 +31,10 @@ final class ContactsListBuilderImpl: ContactsListBuilder {
             contactDetailsBuilder: contactDetailsBuilder
         )
 
-        view.router = router //change
+        let interactor = ContactListInteractorImpl(contactsRepository: ContactsRepositoryStubImpl())
+        let viewModel = ContactsListViewModel(interactor: interactor, router: router)
+        view.viewModel = viewModel
+
         return view
     }
 }

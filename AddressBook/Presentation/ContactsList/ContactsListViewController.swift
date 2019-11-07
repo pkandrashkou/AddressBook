@@ -8,16 +8,11 @@
 
 import RxCocoa
 import RxSwift
+import RxDataSources
 import SnapKit
 
 final class ContactsListViewController: UIViewController {
-    private enum State {
-        case loading
-        case noContacts
-        case contacts([Contact])
-    }
-
-    private var state: State = .loading {
+    private var state: ContactsListViewModel.State = .loading {
         didSet {
             updateState(state: state)
         }
@@ -26,55 +21,44 @@ final class ContactsListViewController: UIViewController {
     private let tableView = ContactsListTableView()
     private let noContactsView = ContactsListNoContactsView()
 
-    private let viewModel: ContactsListViewModel
+    var viewModel: ContactsListViewModel!
     private let disposeBag = DisposeBag()
-
-    init(viewModel: ContactsListViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    var router: ContactsListRouter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Address Book"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddButtonPress))
-        updateState(state: .noContacts)
+        bindViewModel()
+    }
 
+    private func bindViewModel() {
+        navigationItem.rightBarButtonItem?.rx.tap
+            .bind(to: viewModel.input.addContactTrigger)
+            .disposed(by: disposeBag)
 
-        viewModel.output.contacts
-//            .map { contacts -> State in
-//                if contacts.isEmpty {
-//                    return .noContacts
-//                } else {
-//                    return .contacts(contacts)
-//                }
-//            }
-//            .bind(to: { (Observable<ContactsListViewController.State>) -> Result in
-//                <#code#>
-//            })
-            .bind(to: tableView.rx.items(cellIdentifier: NSStringFromClass(UITableViewCell.self), cellType: UITableViewCell.self)) { (index, contact, cell) in
+        tableView.rx.itemSelected
+            .do(onNext: { [weak self] indexPath in
+                self?.tableView.deselectRow(at: indexPath, animated: true)
+            })
+            .bind(to: viewModel.input.selectTrigger)
+            .disposed(by: disposeBag)
+
+        viewModel.output.state
+            .drive(onNext: { [weak self] state in
+                self?.state = state
+            }).disposed(by: disposeBag)
+
+        viewModel.output.items
+            .asObservable()
+            .bind(to: tableView.rx.items(cellIdentifier: NSStringFromClass(UITableViewCell.self), cellType: UITableViewCell.self)) { (index, item, cell) in
                 cell.textLabel?.font = Font.body
-                cell.textLabel?.text = "\(contact.firstName) \(contact.lastName)"
-        }.disposed(by: disposeBag)
+                cell.textLabel?.text = item.title
+            }.disposed(by: disposeBag)
     }
 
-    @objc func onAddButtonPress() {
-        router.showAddNewContact()
-    }
-
-    @objc func onDetailsPress() {
-        router.showContactDetails(id: "id")
-    }
-
-    private func updateState(state: State) {
+    private func updateState(state: ContactsListViewModel.State) {
         switch state {
         case .loading:
             tableView.removeFromSuperview()
