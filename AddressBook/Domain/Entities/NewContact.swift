@@ -1,13 +1,12 @@
 //
-//  Contact.swift
+//  NewContact.swift
 //  AddressBook
 //
-//  Created by Pavel Kondrashkov on 11/6/19.
+//  Created by Pavel Kondrashkov on 11/7/19.
 //  Copyright © 2019 Touchlane. All rights reserved.
 //
 
-struct Contact {
-    let id: String
+struct NewContact {
     let firstName: String
     let lastName: String?
     let email: String

@@ -14,13 +14,13 @@ final class AddContactViewModel {
 
         case empty
         case valid
-        case invalidEmail
         case requiredFieldsMissing([Fields])
     }
 
     struct Input {
         let saveTrigger: AnyObserver<Void>
         let endEditingEmail: AnyObserver<Void>
+        let cancelTrigger: AnyObserver<Void>
 
         let firstName: AnyObserver<String>
         let secondName: AnyObserver<String>
@@ -32,44 +32,34 @@ final class AddContactViewModel {
     struct Output {
         let state: Driver<State>
         let isEmailValid: Driver<Bool>
+        let closed: Driver<Void>
     }
 
     private let saveSubject = PublishSubject<Void>()
     private let emailEndEditingSubject = PublishSubject<Void>()
+    private let cancelSubject = PublishSubject<Void>()
 
-    private let firstNameSubject = PublishSubject<String>()
-    private let secondNameSubject = PublishSubject<String>()
-    private let emailSubject = PublishSubject<String>()
-    private let phoneNumberSubject = PublishSubject<String>()
-    private let addressSubject = PublishSubject<String>()
-
+    private let firstNameSubject = ReplaySubject<String>.create(bufferSize: 1)
+    private let secondNameSubject = ReplaySubject<String>.create(bufferSize: 1)
+    private let emailSubject = ReplaySubject<String>.create(bufferSize: 1)
+    private let phoneNumberSubject = ReplaySubject<String>.create(bufferSize: 1)
+    private let addressSubject = ReplaySubject<String>.create(bufferSize: 1)
 
     init(interactor: AddContactInteractor, router: AddContactRouter) {
         let firstNameValidation = firstNameSubject.asObservable()
-//            .skipWhile { $0.isEmpty }
-//            .distinctUntilChanged()
-            .map { name -> Bool in
-                print("name", !name.trimmingCharacters(in: .whitespaces).isEmpty)
-                return !name.trimmingCharacters(in: .whitespaces).isEmpty
-        }
+            .map { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
 
         let emailValidation = emailSubject.asObservable()
-//            .skipWhile { $0.isEmpty }
-//            .distinctUntilChanged()
             .flatMap { interactor.validate(email: $0).asObservable() }
 
         let phoneValidation = phoneNumberSubject.asObservable()
-//            .skipWhile { $0.isEmpty }
-//            .distinctUntilChanged()
             .map { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
-
 
         let requiredFields = Observable.combineLatest(
             firstNameValidation.startWith(false),
             emailValidation.startWith(false),
             phoneValidation.startWith(false)
             )
-//            .skip(1)
             .map { isFirstNameValid, isEmailValid, isPhoneValid -> State in
                 var invalidaFields: [State.Fields] = []
                 if !isFirstNameValid {
@@ -87,37 +77,61 @@ final class AddContactViewModel {
                     return .valid
                 }
             }
-//            .asDriver(onErrorJustReturn: .empty)
-
 
         let state = saveSubject
             .withLatestFrom(requiredFields) { $1 }
             .asDriver(onErrorJustReturn: .empty)
-            .debug("state")
-
-//        let state = requiredFields
-//            .withLatestFrom(saveSubject, resultSelector: { (state: AddContactViewModel.State, void: Void) -> AddContactViewModel.State in
-//                return state
-//            })
-////            .withLatestFrom(saveSubject.asObservable(), resultSelector: { $0 })
-//            .asDriver(onErrorJustReturn: .empty)
-//            .debug("state")
-
-
 
         let isEmailValidEditing = emailEndEditingSubject
             .withLatestFrom(emailValidation)
             .asDriver(onErrorJustReturn: false)
-            .debug("isEmailValidEditing")
+
+        let form = Observable.combineLatest(
+            firstNameSubject.startWith(""),
+            secondNameSubject.startWith(""),
+            emailSubject.startWith(""),
+            phoneNumberSubject.startWith(""),
+            addressSubject.startWith("")
+            ).map { firstName, lastName, email, phone, address in
+                return NewContact(
+                    firstName: firstName,
+                    lastName: lastName.isEmpty ? nil : lastName,
+                    email: email,
+                    phoneNumber: phone,
+                    address: address.isEmpty ? nil : address
+                )
+        }
+
+        let saved = saveSubject
+            .withLatestFrom(state) { (_, state: State) -> Bool in
+                guard case .valid = state else { return false }
+                return true
+            }
+            .skipWhile { $0 == false }
+            .withLatestFrom(form) { $1 }
+            .flatMap { interactor.saveContact(contact: $0) }
+            .map { _ in return () }
+            .do(onNext: {
+                router.close()
+            })
+            .asDriver(onErrorDriveWith: Driver.never())
+
+        let canceled = cancelSubject
+            .do(onNext: { _ in
+                router.close()
+            })
+            .asDriver(onErrorDriveWith: Driver.never())
 
         output = Output(
             state: state,
-            isEmailValid: isEmailValidEditing
+            isEmailValid: isEmailValidEditing,
+            closed: Driver.merge(saved, canceled)
         )
 
         input = Input(
             saveTrigger: saveSubject.asObserver(),
             endEditingEmail: emailEndEditingSubject.asObserver(),
+            cancelTrigger: cancelSubject.asObserver(),
             firstName: firstNameSubject.asObserver(),
             secondName: secondNameSubject.asObserver(),
             email: emailSubject.asObserver(),

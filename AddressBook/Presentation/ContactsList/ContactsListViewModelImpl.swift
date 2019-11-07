@@ -46,7 +46,7 @@ final class ContactsListViewModel {
             .asDriver(onErrorJustReturn: .noContacts)
 
         let items = contacts
-            .map { $0.map { ContactsListTableItem(id: $0.id, title: "\($0.firstName) \($0.lastName)")} }
+            .map { $0.map { ContactsListTableItem(id: $0.id, title: "\($0.firstName) \($0.lastName ?? "")")} }
             .asDriver(onErrorJustReturn: [])
 
         selectedItemSubject

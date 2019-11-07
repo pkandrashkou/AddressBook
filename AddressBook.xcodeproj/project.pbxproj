@@ -47,6 +47,8 @@
 		8630672B2373374A003F7649 /* ContactTextFieldRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672A2373374A003F7649 /* ContactTextFieldRow.swift */; };
 		8630672D23733A97003F7649 /* ContactsRepositoryStubImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672C23733A97003F7649 /* ContactsRepositoryStubImpl.swift */; };
 		86306731237352B9003F7649 /* ContactsListTableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86306730237352B9003F7649 /* ContactsListTableItem.swift */; };
+		8630673423744B8E003F7649 /* EmailValidationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630673323744B8E003F7649 /* EmailValidationUseCase.swift */; };
+		8630673623745DC2003F7649 /* NewContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630673523745DC2003F7649 /* NewContact.swift */; };
 		866ADBB82371F6FB00B5CA06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */; };
 		866ADBBF2371F6FC00B5CA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */; };
 		866ADBC22371F6FC00B5CA06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBC02371F6FC00B5CA06 /* LaunchScreen.storyboard */; };
@@ -105,6 +107,8 @@
 		8630672A2373374A003F7649 /* ContactTextFieldRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTextFieldRow.swift; sourceTree = "<group>"; };
 		8630672C23733A97003F7649 /* ContactsRepositoryStubImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsRepositoryStubImpl.swift; sourceTree = "<group>"; };
 		86306730237352B9003F7649 /* ContactsListTableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListTableItem.swift; sourceTree = "<group>"; };
+		8630673323744B8E003F7649 /* EmailValidationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationUseCase.swift; sourceTree = "<group>"; };
+		8630673523745DC2003F7649 /* NewContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContact.swift; sourceTree = "<group>"; };
 		866ADBB42371F6FB00B5CA06 /* AddressBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			children = (
 				8630670D2372E333003F7649 /* Entities */,
 				8630670C2372E32B003F7649 /* Repositories */,
+				8630673223744B7B003F7649 /* UseCases */,
 				8630670B2372E31F003F7649 /* Intaractors */,
 			);
 			path = Domain;
@@ -261,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				8630670E2372E343003F7649 /* Contact.swift */,
+				8630673523745DC2003F7649 /* NewContact.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -299,6 +305,14 @@
 				8630672323732FE3003F7649 /* Font.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		8630673223744B7B003F7649 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				8630673323744B8E003F7649 /* EmailValidationUseCase.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 		866ADBAB2371F6FB00B5CA06 = {
@@ -561,6 +575,7 @@
 				863067152372EED5003F7649 /* ContactsListTableView.swift in Sources */,
 				8630670A2372DC38003F7649 /* WindowScene.swift in Sources */,
 				863066EE2372B0CA003F7649 /* AddContactRouterImpl.swift in Sources */,
+				8630673623745DC2003F7649 /* NewContact.swift in Sources */,
 				8630672B2373374A003F7649 /* ContactTextFieldRow.swift in Sources */,
 				863066C6237201DC003F7649 /* ContactsListViewModelImpl.swift in Sources */,
 				863067132372E4FB003F7649 /* AddContactInteractor.swift in Sources */,
@@ -584,6 +599,7 @@
 				863067002372BA40003F7649 /* ContactDetailsViewModelImpl.swift in Sources */,
 				863067062372DB77003F7649 /* NavigationScene.swift in Sources */,
 				863066CA237201F3003F7649 /* ContactsListRouterImpl.swift in Sources */,
+				8630673423744B8E003F7649 /* EmailValidationUseCase.swift in Sources */,
 				863066D723720D78003F7649 /* AppComponent.swift in Sources */,
 				8630672423732FE3003F7649 /* Font.swift in Sources */,
 				8630672D23733A97003F7649 /* ContactsRepositoryStubImpl.swift in Sources */,
