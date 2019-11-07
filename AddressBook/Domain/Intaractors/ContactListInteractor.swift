@@ -2,7 +2,6 @@ import RxSwift
 
 protocol ContactListInteractor {
     func fetchContacts() -> Observable<[Contact]>
-    func searchContact(query: String) -> Observable<[Contact]>
 }
 
 final class ContactListInteractorImpl: ContactListInteractor {
@@ -14,9 +13,5 @@ final class ContactListInteractorImpl: ContactListInteractor {
 
     func fetchContacts() -> Observable<[Contact]> {
         return contactsRepository.fetchContacts()
-    }
-
-    func searchContact(query: String) -> Observable<[Contact]> {
-        fatalError()
     }
 }

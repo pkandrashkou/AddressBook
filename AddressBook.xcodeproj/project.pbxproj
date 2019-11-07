@@ -166,8 +166,7 @@
 		863066C12371FD69003F7649 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				86306739237465B3003F7649 /* Entities */,
-				863067372374639B003F7649 /* ContactsRepositoryImpl.swift */,
+				863067482374A9F3003F7649 /* Realm */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -343,6 +342,15 @@
 				863067432374A2DA003F7649 /* Strings.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		863067482374A9F3003F7649 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				86306739237465B3003F7649 /* Entities */,
+				863067372374639B003F7649 /* ContactsRepositoryImpl.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		866ADBAB2371F6FB00B5CA06 = {
