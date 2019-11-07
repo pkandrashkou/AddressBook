@@ -19,7 +19,7 @@ final class ContactsListViewController: UIViewController {
 
     private func setupUI() {
         view.backgroundColor = .white
-        navigationItem.title = "Contacts"
+        navigationItem.title = L10n.ContactsList.NavigationBar.title
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
 
         let search = UISearchController(searchResultsController: nil)

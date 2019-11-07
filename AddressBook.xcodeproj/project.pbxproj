@@ -51,6 +51,9 @@
 		863067382374639B003F7649 /* ContactsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863067372374639B003F7649 /* ContactsRepositoryImpl.swift */; };
 		8630673B237465BE003F7649 /* RealmContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630673A237465BE003F7649 /* RealmContact.swift */; };
 		8630673D2374716D003F7649 /* ContactDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630673C2374716D003F7649 /* ContactDetailsInteractor.swift */; };
+		8630674123749FB0003F7649 /* AddContacts.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8630674023749FB0003F7649 /* AddContacts.strings */; };
+		863067442374A2DA003F7649 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863067432374A2DA003F7649 /* Strings.swift */; };
+		863067472374A6B1003F7649 /* ContactsList.strings in Resources */ = {isa = PBXBuildFile; fileRef = 863067462374A6B1003F7649 /* ContactsList.strings */; };
 		866ADBB82371F6FB00B5CA06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */; };
 		866ADBBF2371F6FC00B5CA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */; };
 		866ADBC22371F6FC00B5CA06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBC02371F6FC00B5CA06 /* LaunchScreen.storyboard */; };
@@ -113,6 +116,9 @@
 		863067372374639B003F7649 /* ContactsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsRepositoryImpl.swift; sourceTree = "<group>"; };
 		8630673A237465BE003F7649 /* RealmContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmContact.swift; sourceTree = "<group>"; };
 		8630673C2374716D003F7649 /* ContactDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsInteractor.swift; sourceTree = "<group>"; };
+		8630674023749FB0003F7649 /* AddContacts.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AddContacts.strings; sourceTree = "<group>"; };
+		863067432374A2DA003F7649 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		863067462374A6B1003F7649 /* ContactsList.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = ContactsList.strings; sourceTree = "<group>"; };
 		866ADBB42371F6FB00B5CA06 /* AddressBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -198,6 +204,7 @@
 				863066C5237201DC003F7649 /* ContactsListViewModelImpl.swift */,
 				863066C9237201F3003F7649 /* ContactsListRouterImpl.swift */,
 				863066CB23720200003F7649 /* ContactsListBuilderImpl.swift */,
+				863067462374A6B1003F7649 /* ContactsList.strings */,
 			);
 			path = ContactsList;
 			sourceTree = "<group>";
@@ -223,6 +230,7 @@
 				863066E92372B0B0003F7649 /* AddContactViewModelImpl.swift */,
 				863066ED2372B0CA003F7649 /* AddContactRouterImpl.swift */,
 				863066EF2372B0D3003F7649 /* AddContactBuilderImpl.swift */,
+				8630674023749FB0003F7649 /* AddContacts.strings */,
 			);
 			path = AddContact;
 			sourceTree = "<group>";
@@ -329,6 +337,14 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		863067422374A2DA003F7649 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				863067432374A2DA003F7649 /* Strings.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		866ADBAB2371F6FB00B5CA06 = {
 			isa = PBXGroup;
 			children = (
@@ -352,6 +368,7 @@
 		866ADBB62371F6FB00B5CA06 /* AddressBook */ = {
 			isa = PBXGroup;
 			children = (
+				863067422374A2DA003F7649 /* Generated */,
 				863066CD237202CF003F7649 /* Application */,
 				863066C12371FD69003F7649 /* Data */,
 				863066C02371FD57003F7649 /* Domain */,
@@ -404,6 +421,7 @@
 				866ADBB12371F6FB00B5CA06 /* Frameworks */,
 				866ADBB22371F6FB00B5CA06 /* Resources */,
 				7BFE26A153DC58F7447987D2 /* [CP] Embed Pods Frameworks */,
+				863067452374A318003F7649 /* Run swiftgen */,
 			);
 			buildRules = (
 			);
@@ -477,6 +495,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				863067472374A6B1003F7649 /* ContactsList.strings in Resources */,
+				8630674123749FB0003F7649 /* AddContacts.strings in Resources */,
 				866ADBC22371F6FC00B5CA06 /* LaunchScreen.storyboard in Resources */,
 				866ADBBF2371F6FC00B5CA06 /* Assets.xcassets in Resources */,
 			);
@@ -530,6 +550,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AddressBook/Pods-AddressBook-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		863067452374A318003F7649 /* Run swiftgen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run swiftgen";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen\n";
 		};
 		C0C7F98B29A23A0BFB025732 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -611,6 +649,7 @@
 				866ADBB82371F6FB00B5CA06 /* AppDelegate.swift in Sources */,
 				863067112372E3C8003F7649 /* ContactsRepository.swift in Sources */,
 				863067172372F5F7003F7649 /* ContactsListNoContactsView.swift in Sources */,
+				863067442374A2DA003F7649 /* Strings.swift in Sources */,
 				863067002372BA40003F7649 /* ContactDetailsViewModelImpl.swift in Sources */,
 				863067062372DB77003F7649 /* NavigationScene.swift in Sources */,
 				863066CA237201F3003F7649 /* ContactsListRouterImpl.swift in Sources */,

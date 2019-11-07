@@ -22,7 +22,7 @@ final class ContactsListNoContactsView: UIView {
 
         mainLabel.textColor = Color.gray2
         mainLabel.textAlignment = .center
-        mainLabel.text = "No Contacts"
+        mainLabel.text = L10n.ContactsList.EmptyList.MainLabel.text
         mainLabel.font = Font.headline
         addSubview(mainLabel)
         mainLabel.snp.makeConstraints {
@@ -34,7 +34,7 @@ final class ContactsListNoContactsView: UIView {
 
         subLabel.textColor = Color.gray2
         subLabel.textAlignment = .center
-        subLabel.text = "Use the '+' Icon to add a new contact"
+        subLabel.text = L10n.ContactsList.EmptyList.SubLabel.text
         subLabel.font = Font.body
         addSubview(subLabel)
         subLabel.snp.makeConstraints {

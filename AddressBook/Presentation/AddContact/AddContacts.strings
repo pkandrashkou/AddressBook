@@ -1,0 +1,8 @@
+"cancelButton.title" = "Cancel";
+"navigationBar.title" = "New Contact";
+"firstName.placeholder" = "First Name";
+"lastName.placeholder" = "Last Name";
+"email.placeholder" = "Email";
+"phoneNumber.placeholder" = "Phone";
+"address.placeholder" = "Address";
+"saveButton.title" = "Save";

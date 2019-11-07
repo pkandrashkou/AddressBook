@@ -16,7 +16,7 @@ final class AddContactViewController: UIViewController {
     private var buttonBottomConstrain: Constraint!
     private var buttonBottomInset: CGFloat = 8
     private let saveButton = UIButton(type: .system)
-    private let closeButton = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
+    private let closeButton = UIBarButtonItem(title: L10n.AddContacts.CancelButton.title, style: .plain, target: nil, action: nil)
 
     var viewModel: AddContactViewModel!
     private let disposeBag = DisposeBag()
@@ -75,20 +75,20 @@ final class AddContactViewController: UIViewController {
         scrollView.keyboardDismissMode = .interactive
 
         navigationItem.leftBarButtonItem = closeButton
-        navigationItem.title = "New Contact"
+        navigationItem.title = L10n.AddContacts.NavigationBar.title
 
-        firstNameTextField.textField.placeholder = "First Name"
-        lastNameTextField.textField.placeholder = "Last Name"
+        firstNameTextField.textField.placeholder = L10n.AddContacts.FirstName.placeholder
+        lastNameTextField.textField.placeholder = L10n.AddContacts.LastName.placeholder
         emailTextField.textField.keyboardType = .emailAddress
-        emailTextField.textField.placeholder = "Email"
+        emailTextField.textField.placeholder = L10n.AddContacts.Email.placeholder
         phoneNumberTextField.textField.keyboardType = .phonePad
-        phoneNumberTextField.textField.placeholder = "Phone"
-        addressTextView.textField.placeholder = "Address"
+        phoneNumberTextField.textField.placeholder = L10n.AddContacts.PhoneNumber.placeholder
+        addressTextView.textField.placeholder = L10n.AddContacts.Address.placeholder
 
         saveButton.layer.cornerRadius = 5
         saveButton.titleLabel?.font = Font.body
         saveButton.setTitleColor(.white, for: .normal)
-        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitle(L10n.AddContacts.SaveButton.title, for: .normal)
         saveButton.backgroundColor = Color.teal
 
         let dismissKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(self.onViewTap))

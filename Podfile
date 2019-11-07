@@ -7,7 +7,8 @@ def common_pods
   pod 'SnapKit', '~> 5'
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
-  pod "RxRealm"
+  pod 'RxRealm'
+  pod 'SwiftGen', '~> 6.0'
 end
 
 target 'AddressBook' do
