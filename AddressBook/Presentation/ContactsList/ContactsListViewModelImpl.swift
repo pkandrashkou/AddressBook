@@ -38,7 +38,6 @@ final class ContactsListViewModel {
 
         let contacts = interactor.fetchContacts()
             .share(replay: 1)
-            .debug("contacts")
 
         let state = contacts
             .map { contacts -> State in contacts.isEmpty ? .noContacts : .contacts }
@@ -47,7 +46,6 @@ final class ContactsListViewModel {
 
         let search = searchSubject
             .startWith("")
-            .debug("search")
             .distinctUntilChanged()
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
 
