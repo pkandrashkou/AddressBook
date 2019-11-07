@@ -25,7 +25,8 @@ final class AddContactViewController: UIViewController {
     private var buttonBottomInset: CGFloat = 8
     private let saveButton = UIButton(type: .system)
 
-    var router: AddContactRouter! //fix
+    var viewModel: AddContactViewModel!
+    private let disposeBag = DisposeBag()
 
     override func loadView() {
         view = UIView()
@@ -93,6 +94,42 @@ final class AddContactViewController: UIViewController {
 
         let dismissKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(self.onViewTap))
         view.addGestureRecognizer(dismissKeyboardTap)
+
+        bindViewModel()
+    }
+
+    private func bindViewModel() {
+        saveButton.rx.tap
+            .bind(to: viewModel.input.saveTrigger)
+            .disposed(by: disposeBag)
+
+        emailTextField.textField.rx.controlEvent(.editingDidEnd)
+            .bind(to: viewModel.input.endEditingEmail)
+            .disposed(by: disposeBag)
+
+        firstNameTextField.textField.rx.text.orEmpty
+            .bind(to: viewModel.input.firstName)
+            .disposed(by: disposeBag)
+        lastNameTextField.textField.rx.text.orEmpty
+            .bind(to: viewModel.input.secondName)
+            .disposed(by: disposeBag)
+        emailTextField.textField.rx.text.orEmpty
+            .bind(to: viewModel.input.email)
+            .disposed(by: disposeBag)
+        phoneNumberTextField.textField.rx.text.orEmpty
+            .bind(to: viewModel.input.phoneNumber)
+            .disposed(by: disposeBag)
+        addressTextView.textField.rx.text.orEmpty
+            .bind(to: viewModel.input.address)
+            .disposed(by: disposeBag)
+
+        viewModel.output.isEmailValid.drive(onNext: { [weak self] isValid in
+            self?.emailTextField.state = isValid ? .normal : .error
+        }).disposed(by: disposeBag)
+
+        viewModel.output.state.drive(onNext: { [weak self] state in
+            self?.updateState(state: state)
+        }).disposed(by: disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -108,17 +145,42 @@ final class AddContactViewController: UIViewController {
     deinit {
         print("deinit AddContactViewController")
     }
+
+    func updateState(state: AddContactViewModel.State) {
+        /// Apply default state.
+        emailTextField.state = .normal
+        firstNameTextField.state = .normal
+        phoneNumberTextField.state = .normal
+
+        switch state {
+        case .empty:
+            emailTextField.state = .normal
+        case .valid:
+            emailTextField.state = .normal
+        case .invalidEmail:
+            emailTextField.state = .error
+        case .requiredFieldsMissing(let fields):
+            for field in fields {
+                switch field {
+                case .email:
+                    emailTextField.state = .error
+                case .firstName:
+                    firstNameTextField.state = .error
+                case .phoneNumber:
+                    phoneNumberTextField.state = .error
+                }
+            }
+        }
+    }
 }
 
 private extension AddContactViewController {
     @objc func onClose() {
         view.endEditing(true)
-        router.close()
     }
 
     @objc func onSave() {
         view.endEditing(true)
-        router.close()
     }
 
     @objc func onViewTap() {

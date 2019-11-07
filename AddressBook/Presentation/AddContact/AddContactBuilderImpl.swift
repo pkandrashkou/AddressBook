@@ -20,10 +20,9 @@ final class AddContactBuilderImpl: AddContactBuilder {
         let container = SolidNavigationController()
         container.viewControllers = [view]
         let router = AddContactRouterImpl(listener: listener)
-//        let coordinator = AddContactCoordinatorImpl(parent: dependency.parent, view: view)
-        view.router = router
-//        view.coordinator = coordinator
-
+        let interactor = AddContactInteractorImpl()
+        let viewModel = AddContactViewModel(interactor: interactor, router: router)
+        view.viewModel = viewModel
         return container
     }
 }

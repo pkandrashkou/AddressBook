@@ -15,10 +15,6 @@ protocol AddContactCoordinator: AnyObject {
     func stop()
 }
 
-protocol AddContactViewModel: AnyObject {
-
-}
-
 protocol AddContactListener: AnyObject {
     func onAddedContact()
 }

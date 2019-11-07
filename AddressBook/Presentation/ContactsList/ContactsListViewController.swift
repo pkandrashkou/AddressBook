@@ -8,16 +8,9 @@
 
 import RxCocoa
 import RxSwift
-import RxDataSources
 import SnapKit
 
 final class ContactsListViewController: UIViewController {
-    private var state: ContactsListViewModel.State = .loading {
-        didSet {
-            updateState(state: state)
-        }
-    }
-
     private let tableView = ContactsListTableView()
     private let noContactsView = ContactsListNoContactsView()
 
@@ -47,7 +40,7 @@ final class ContactsListViewController: UIViewController {
 
         viewModel.output.state
             .drive(onNext: { [weak self] state in
-                self?.state = state
+                self?.updateState(state: state)
             }).disposed(by: disposeBag)
 
         viewModel.output.items

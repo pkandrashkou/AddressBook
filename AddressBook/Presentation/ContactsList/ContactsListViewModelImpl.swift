@@ -10,7 +10,6 @@ import RxCocoa
 import RxSwift
 
 final class ContactsListViewModel {
-    private let router: ContactsListRouter
     enum State {
         case loading
         case noContacts
@@ -37,7 +36,6 @@ final class ContactsListViewModel {
 
     init(interactor: ContactListInteractor,
          router: ContactsListRouter) {
-        self.router = router
 
         let contacts = interactor.fetchContacts()
             .share(replay: 1)
