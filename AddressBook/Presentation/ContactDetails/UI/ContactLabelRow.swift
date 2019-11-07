@@ -1,11 +1,3 @@
-//
-//  ContactLabel.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/6/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import UIKit
 import SnapKit
 
@@ -15,7 +7,7 @@ final class ContactLabelRow: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        label.font = Font.caption
+        label.font = Font.body
         addSubview(label)
         label.snp.makeConstraints {
             $0.top.equalToSuperview().offset(12)

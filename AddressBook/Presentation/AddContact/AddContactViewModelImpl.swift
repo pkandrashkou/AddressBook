@@ -2,6 +2,9 @@ import RxSwift
 import RxCocoa
 
 final class AddContactViewModel {
+    private let interactor: AddContactInteractor
+    private let router: AddContactRouter
+
     let input: Input
     let output: Output
 
@@ -44,8 +47,11 @@ final class AddContactViewModel {
     private let emailSubject = ReplaySubject<String>.create(bufferSize: 1)
     private let phoneNumberSubject = ReplaySubject<String>.create(bufferSize: 1)
     private let addressSubject = ReplaySubject<String>.create(bufferSize: 1)
-
+    
+/// TODO refactor a bit
     init(interactor: AddContactInteractor, router: AddContactRouter) {
+        self.interactor = interactor
+        self.router = router
         let firstNameValidation = firstNameSubject.asObservable()
             .map { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
 

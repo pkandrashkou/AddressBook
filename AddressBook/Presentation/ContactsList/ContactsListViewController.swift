@@ -1,11 +1,3 @@
-//
-//  ContactsListViewController.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/5/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import RxCocoa
 import RxSwift
 import SnapKit
@@ -19,11 +11,14 @@ final class ContactsListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationItem.title = "Address Book"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
-
+        setupUI()
         bindViewModel()
+    }
+
+    private func setupUI() {
+        view.backgroundColor = .white
+        navigationItem.title = "Contacts"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
     }
 
     private func bindViewModel() {

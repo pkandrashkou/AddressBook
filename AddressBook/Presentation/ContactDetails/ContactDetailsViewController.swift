@@ -1,12 +1,6 @@
-//
-//  ContactDetailsViewController.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/5/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class ContactDetailsViewController: UIViewController {
     private let firstName = ContactLabelRow()
@@ -17,6 +11,9 @@ final class ContactDetailsViewController: UIViewController {
 
     private let scrollView = UIScrollView()
     private let contentView = UIView()
+
+    var viewModel: ContactDetailsViewModel!
+    private let disposeBag = DisposeBag()
 
     override func loadView() {
         view = UIView()
@@ -55,22 +52,30 @@ final class ContactDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        bindViewModel()
+    }
 
-        navigationItem.title = "Joshua Smith"
+    private func setupUI() {
         address.label.numberOfLines = 0
+    }
 
-        firstName.label.text = "firstNameLabel firstNameLabel"
-        lastName.label.text = "lastNameLabel lastNameLabel"
-        email.label.text = "emailLabel emailLabel"
-        phoneNumber.label.text = "phoneNumberLabel phoneNumberLabel"
-        address.label.text =
-        """
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ex, convallis ultricies sodales sed, rhoncus id nisl. Maecenas bibendum neque mollis, lacinia justo in, vulputate mauris. Sed dictum libero eu mi fermentum, et fringilla nibh feugiat. Vestibulum efficitur fringilla fringilla. Proin congue diam sit amet tristique semper. In facilisis iaculis velit. Donec fermentum justo et mauris hendrerit egestas.
+    private func bindViewModel() {
+        viewModel.output.contact.drive(onNext: { [weak self] contact in
+            guard let self = self else { return }
+            let title = contact.firstName + " " + (contact.lastName ?? "")
+            self.navigationItem.title = title
+            self.firstName.label.text = contact.firstName
 
-        Morbi urna nunc, tempus at magna tincidunt, lobortis euismod neque. Aenean ornare turpis interdum mi molestie, ac elementum neque mollis. In vel tortor justo. Sed volutpat nunc sapien, vel gravida nunc convallis sed. Cras eget lobortis velit. Vestibulum orci velit, ullamcorper sed massa ac, congue facilisis orci. Duis porttitor nibh sit amet finibus euismod. Nunc sodales risus nec aliquet vestibulum. Suspendisse rutrum porta dolor. Quisque consectetur neque risus, sed molestie tortor iaculis nec. Etiam at ultrices nulla. Vestibulum luctus iaculis dui a posuere. Integer aliquet tristique facilisis.
+            self.lastName.isHidden = contact.lastName == nil
+            self.lastName.label.text = contact.lastName
 
-        Aenean egestas ipsum sit amet purus malesuada, quis pulvinar neque ultrices. Duis ullamcorper tempor nunc, id interdum velit accumsan vel. Proin ac mauris ultricies, aliquet velit vel, mollis neque. Integer viverra elit eu mi auctor fringilla. Duis ac pulvinar enim. Morbi vitae ultricies dui. Ut tincidunt augue fringilla, commodo ante nec, venenatis magna.
-        """
+            self.email.label.text = contact.email
+            self.phoneNumber.label.text = contact.phoneNumber
+
+            self.address.label.isHidden = contact.address == nil
+            self.address.label.text = contact.address
+        }).disposed(by: disposeBag)
     }
 
     deinit {

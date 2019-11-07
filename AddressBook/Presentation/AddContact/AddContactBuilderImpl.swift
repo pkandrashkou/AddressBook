@@ -1,11 +1,3 @@
-//
-//  AddContactBuilderImpl.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/6/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import UIKit
 
 final class AddContactBuilderImpl: AddContactBuilder {
@@ -20,7 +12,7 @@ final class AddContactBuilderImpl: AddContactBuilder {
         let container = SolidNavigationController()
         container.viewControllers = [view]
         let router = AddContactRouterImpl(listener: listener)
-        let contactsRepository = ContactsRepositoryStubImpl()
+        let contactsRepository = ContactsRepositoryImpl(realm: dependency.realm)
         let emailValidationUseCase = EmailValidationUseCaseImpl()
         let interactor = AddContactInteractorImpl(contactsRepository: contactsRepository, emailValidationUseCase: emailValidationUseCase)
         let viewModel = AddContactViewModel(interactor: interactor, router: router)

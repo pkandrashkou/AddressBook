@@ -1,15 +1,13 @@
-//
-//  ContactsRepository.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/6/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import RxSwift
+
+enum ContactsRepositoryError: Error {
+    case savingFailed
+    case contactNotFound
+    case underlying(Error)
+}
 
 protocol ContactsRepository {
     func fetchContacts() -> Observable<[Contact]>
-    func searchContact(query: String) -> Observable<[Contact]>
-    func saveContact(contact: Contact) -> Completable
+    func fetchContact(id: String) -> Single<Contact>
+    func saveContact(contact: NewContact) -> Single<Contact>
 }

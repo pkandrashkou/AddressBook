@@ -1,17 +1,8 @@
-//
-//  ContactDetailsContract.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/5/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import UIKit
+import RealmSwift
 
-protocol ContactDetailsDependency { }
-
-protocol ContactDetailsViewModel: AnyObject {
-
+protocol ContactDetailsDependency {
+    var realm: Realm { get }
 }
 
 protocol ContactDetailsBuilder {

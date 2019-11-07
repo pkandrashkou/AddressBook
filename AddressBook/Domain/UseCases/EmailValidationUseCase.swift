@@ -1,11 +1,3 @@
-//
-//  EmailValidationUseCase.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/7/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import Foundation
 
 protocol EmailValidationUseCase {
@@ -32,5 +24,9 @@ final class EmailValidationUseCaseImpl: EmailValidationUseCase {
         guard !trimmedText.hasPrefix("mailto") else { return false }
 
         return true
+    }
+
+    deinit {
+        print("EmailValidationUseCaseImpl")
     }
 }

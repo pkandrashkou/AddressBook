@@ -1,15 +1,9 @@
-//
-//  RootContract.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/5/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import UIKit
+import RealmSwift
 
 protocol RootDependency {
     var window: UIWindow { get }
+    var realm: Realm { get }
 }
 
 protocol RootBuilder: AnyObject {

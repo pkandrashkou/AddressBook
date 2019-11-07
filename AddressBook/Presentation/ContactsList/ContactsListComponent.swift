@@ -1,19 +1,11 @@
-//
-//  ContactsListComponent.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/6/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import UIKit
+import RealmSwift
 
 final class ContactsListComponent: AddContactDependency, ContactDetailsDependency {
     private let dependency: ContactsListDependency
-    let parent: UIViewController
+    var realm: Realm { return dependency.realm }
 
-    init(dependency: ContactsListDependency, parent: UIViewController) {
+    init(dependency: ContactsListDependency) {
         self.dependency = dependency
-        self.parent = parent
     }
 }

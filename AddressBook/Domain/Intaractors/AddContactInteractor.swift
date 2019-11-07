@@ -1,11 +1,3 @@
-//
-//  AddContactInteractor.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/6/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import RxSwift
 import RxCocoa
 
@@ -42,15 +34,10 @@ final class AddContactInteractorImpl: AddContactInteractor {
     }
 
     func saveContact(contact: NewContact) -> Single<Contact> {
-        let created = Contact(
-            id: "someId",
-            firstName: contact.firstName,
-            lastName: contact.lastName,
-            email: contact.email,
-            phoneNumber: contact.phoneNumber,
-            address: contact.address
-        )
-        return contactsRepository.saveContact(contact: created)
-            .andThen(Single.just(created))
+        return contactsRepository.saveContact(contact: contact)
+    }
+
+    deinit {
+        print("AddContactInteractorImpl")
     }
 }

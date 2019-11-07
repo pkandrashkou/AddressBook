@@ -1,11 +1,3 @@
-//
-//  ContactListInteractor.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/5/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import RxSwift
 
 protocol ContactListInteractor {
@@ -25,6 +17,10 @@ final class ContactListInteractorImpl: ContactListInteractor {
     }
 
     func searchContact(query: String) -> Observable<[Contact]> {
-        return contactsRepository.searchContact(query: query)
+        fatalError()
+    }
+
+    deinit {
+        print("ContactListInteractor")
     }
 }

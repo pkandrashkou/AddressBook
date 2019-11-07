@@ -1,11 +1,3 @@
-//
-//  AddContactViewController.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/6/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import UIKit
 import SnapKit
 import RxSwift
@@ -73,6 +65,11 @@ final class AddContactViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        bindViewModel()
+    }
+
+    private func setupUI() {
         view.backgroundColor = .white
         scrollView.delaysContentTouches = false
         scrollView.keyboardDismissMode = .interactive
@@ -94,34 +91,24 @@ final class AddContactViewController: UIViewController {
 
         let dismissKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(self.onViewTap))
         view.addGestureRecognizer(dismissKeyboardTap)
-
-        bindViewModel()
     }
 
     private func bindViewModel() {
-        saveButton.rx.tap
-            .bind(to: viewModel.input.saveTrigger)
+        saveButton.rx.tap.bind(to: viewModel.input.saveTrigger)
             .disposed(by: disposeBag)
-        emailTextField.textField.rx.controlEvent(.editingDidEnd)
-            .bind(to: viewModel.input.endEditingEmail)
+        emailTextField.textField.rx.controlEvent(.editingDidEnd).bind(to: viewModel.input.endEditingEmail)
             .disposed(by: disposeBag)
-        closeButton.rx.tap
-            .bind(to: viewModel.input.cancelTrigger)
+        closeButton.rx.tap.bind(to: viewModel.input.cancelTrigger)
             .disposed(by: disposeBag)
-        firstNameTextField.textField.rx.text.orEmpty
-            .bind(to: viewModel.input.firstName)
+        firstNameTextField.textField.rx.text.orEmpty.bind(to: viewModel.input.firstName)
             .disposed(by: disposeBag)
-        lastNameTextField.textField.rx.text.orEmpty
-            .bind(to: viewModel.input.secondName)
+        lastNameTextField.textField.rx.text.orEmpty.bind(to: viewModel.input.secondName)
             .disposed(by: disposeBag)
-        emailTextField.textField.rx.text.orEmpty
-            .bind(to: viewModel.input.email)
+        emailTextField.textField.rx.text.orEmpty.bind(to: viewModel.input.email)
             .disposed(by: disposeBag)
-        phoneNumberTextField.textField.rx.text.orEmpty
-            .bind(to: viewModel.input.phoneNumber)
+        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.input.phoneNumber)
             .disposed(by: disposeBag)
-        addressTextView.textField.rx.text.orEmpty
-            .bind(to: viewModel.input.address)
+        addressTextView.textField.rx.text.orEmpty.bind(to: viewModel.input.address)
             .disposed(by: disposeBag)
 
         viewModel.output.isEmailValid.drive(onNext: { [weak self] isValid in
@@ -132,9 +119,8 @@ final class AddContactViewController: UIViewController {
             self?.updateState(state: state)
         }).disposed(by: disposeBag)
 
-        viewModel.output.closed.drive(onNext: { [weak self] _ in
-            self?.view.endEditing(true)
-        }).disposed(by: disposeBag)
+        viewModel.output.closed.drive()
+            .disposed(by: disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {

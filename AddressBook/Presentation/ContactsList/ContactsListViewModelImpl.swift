@@ -1,11 +1,3 @@
-//
-//  ContactListViewModel.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/5/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import RxCocoa
 import RxSwift
 
@@ -15,6 +7,9 @@ final class ContactsListViewModel {
         case noContacts
         case contacts
     }
+
+    private let interactor: ContactListInteractor
+    private let router: ContactsListRouter
 
     let input: Input
     let output: Output
@@ -36,6 +31,8 @@ final class ContactsListViewModel {
 
     init(interactor: ContactListInteractor,
          router: ContactsListRouter) {
+        self.interactor = interactor
+        self.router = router
 
         let contacts = interactor.fetchContacts()
             .share(replay: 1)

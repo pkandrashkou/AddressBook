@@ -1,11 +1,3 @@
-//
-//  Fonts.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/6/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import UIKit
 
 /// https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/

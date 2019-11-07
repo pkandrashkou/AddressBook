@@ -1,9 +1,20 @@
-//
-//  ContactDetailsViewModel.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/5/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
+import RxSwift
+import RxCocoa
 
-import Foundation
+final class ContactDetailsViewModel {
+    private let interactor: ContactDetailsInteractor
+
+    let output: Output
+    
+    struct Output {
+        let contact: Driver<Contact>
+    }
+
+    init(id: String, interactor: ContactDetailsInteractor) {
+        self.interactor = interactor
+
+        let contact = interactor.fetchContact(id: id)
+            .asDriver(onErrorDriveWith: Driver.never())
+        output = Output(contact: contact)
+    }
+}

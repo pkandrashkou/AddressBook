@@ -1,11 +1,3 @@
-//
-//  ContactListBuilder.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/5/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import UIKit
 
 final class ContactDetailsBuilderImpl: ContactDetailsBuilder {
@@ -17,8 +9,9 @@ final class ContactDetailsBuilderImpl: ContactDetailsBuilder {
 
     func build(contactId: String) -> UIViewController {
         let view = ContactDetailsViewController()
-//        let coordinator = ContactDetailsCoordinatorImpl(parent: dependency.parent, view: view)
-//        view.coordinator = coordinator
+        let contactsRepository = ContactsRepositoryImpl(realm: dependency.realm)
+        let interactor = ContactDetailsInteractorImpl(contactsRepository: contactsRepository)
+        view.viewModel = ContactDetailsViewModel(id: contactId, interactor: interactor)
         return view
     }
 }

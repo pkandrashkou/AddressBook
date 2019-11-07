@@ -45,10 +45,12 @@
 		8630672423732FE3003F7649 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672323732FE3003F7649 /* Font.swift */; };
 		8630672823733682003F7649 /* ContactLabelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672723733682003F7649 /* ContactLabelRow.swift */; };
 		8630672B2373374A003F7649 /* ContactTextFieldRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672A2373374A003F7649 /* ContactTextFieldRow.swift */; };
-		8630672D23733A97003F7649 /* ContactsRepositoryStubImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630672C23733A97003F7649 /* ContactsRepositoryStubImpl.swift */; };
 		86306731237352B9003F7649 /* ContactsListTableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86306730237352B9003F7649 /* ContactsListTableItem.swift */; };
 		8630673423744B8E003F7649 /* EmailValidationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630673323744B8E003F7649 /* EmailValidationUseCase.swift */; };
 		8630673623745DC2003F7649 /* NewContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630673523745DC2003F7649 /* NewContact.swift */; };
+		863067382374639B003F7649 /* ContactsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863067372374639B003F7649 /* ContactsRepositoryImpl.swift */; };
+		8630673B237465BE003F7649 /* RealmContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630673A237465BE003F7649 /* RealmContact.swift */; };
+		8630673D2374716D003F7649 /* ContactDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8630673C2374716D003F7649 /* ContactDetailsInteractor.swift */; };
 		866ADBB82371F6FB00B5CA06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */; };
 		866ADBBF2371F6FC00B5CA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */; };
 		866ADBC22371F6FC00B5CA06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866ADBC02371F6FC00B5CA06 /* LaunchScreen.storyboard */; };
@@ -105,10 +107,12 @@
 		8630672323732FE3003F7649 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		8630672723733682003F7649 /* ContactLabelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactLabelRow.swift; sourceTree = "<group>"; };
 		8630672A2373374A003F7649 /* ContactTextFieldRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTextFieldRow.swift; sourceTree = "<group>"; };
-		8630672C23733A97003F7649 /* ContactsRepositoryStubImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsRepositoryStubImpl.swift; sourceTree = "<group>"; };
 		86306730237352B9003F7649 /* ContactsListTableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListTableItem.swift; sourceTree = "<group>"; };
 		8630673323744B8E003F7649 /* EmailValidationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationUseCase.swift; sourceTree = "<group>"; };
 		8630673523745DC2003F7649 /* NewContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContact.swift; sourceTree = "<group>"; };
+		863067372374639B003F7649 /* ContactsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsRepositoryImpl.swift; sourceTree = "<group>"; };
+		8630673A237465BE003F7649 /* RealmContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmContact.swift; sourceTree = "<group>"; };
+		8630673C2374716D003F7649 /* ContactDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsInteractor.swift; sourceTree = "<group>"; };
 		866ADBB42371F6FB00B5CA06 /* AddressBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866ADBB72371F6FB00B5CA06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		866ADBBE2371F6FC00B5CA06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,7 +160,8 @@
 		863066C12371FD69003F7649 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				8630672C23733A97003F7649 /* ContactsRepositoryStubImpl.swift */,
+				86306739237465B3003F7649 /* Entities */,
+				863067372374639B003F7649 /* ContactsRepositoryImpl.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -189,10 +194,10 @@
 				863066D823720EB4003F7649 /* ContactsListContract.swift */,
 				863066F12372B6AC003F7649 /* ContactsListComponent.swift */,
 				863066C323720024003F7649 /* ContactsListViewController.swift */,
+				86306730237352B9003F7649 /* ContactsListTableItem.swift */,
 				863066C5237201DC003F7649 /* ContactsListViewModelImpl.swift */,
 				863066C9237201F3003F7649 /* ContactsListRouterImpl.swift */,
 				863066CB23720200003F7649 /* ContactsListBuilderImpl.swift */,
-				86306730237352B9003F7649 /* ContactsListTableItem.swift */,
 			);
 			path = ContactsList;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 			children = (
 				863066C7237201E5003F7649 /* ContactListInteractor.swift */,
 				863067122372E4FB003F7649 /* AddContactInteractor.swift */,
+				8630673C2374716D003F7649 /* ContactDetailsInteractor.swift */,
 			);
 			path = Intaractors;
 			sourceTree = "<group>";
@@ -313,6 +319,14 @@
 				8630673323744B8E003F7649 /* EmailValidationUseCase.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		86306739237465B3003F7649 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				8630673A237465BE003F7649 /* RealmContact.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		866ADBAB2371F6FB00B5CA06 = {
@@ -575,6 +589,7 @@
 				863067152372EED5003F7649 /* ContactsListTableView.swift in Sources */,
 				8630670A2372DC38003F7649 /* WindowScene.swift in Sources */,
 				863066EE2372B0CA003F7649 /* AddContactRouterImpl.swift in Sources */,
+				8630673B237465BE003F7649 /* RealmContact.swift in Sources */,
 				8630673623745DC2003F7649 /* NewContact.swift in Sources */,
 				8630672B2373374A003F7649 /* ContactTextFieldRow.swift in Sources */,
 				863066C6237201DC003F7649 /* ContactsListViewModelImpl.swift in Sources */,
@@ -600,9 +615,10 @@
 				863067062372DB77003F7649 /* NavigationScene.swift in Sources */,
 				863066CA237201F3003F7649 /* ContactsListRouterImpl.swift in Sources */,
 				8630673423744B8E003F7649 /* EmailValidationUseCase.swift in Sources */,
+				8630673D2374716D003F7649 /* ContactDetailsInteractor.swift in Sources */,
 				863066D723720D78003F7649 /* AppComponent.swift in Sources */,
+				863067382374639B003F7649 /* ContactsRepositoryImpl.swift in Sources */,
 				8630672423732FE3003F7649 /* Font.swift in Sources */,
-				8630672D23733A97003F7649 /* ContactsRepositoryStubImpl.swift in Sources */,
 				863066D123720D1D003F7649 /* RootBuilderImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -760,6 +776,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9HPA26PN65;
 				INFOPLIST_FILE = AddressBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -780,6 +797,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9HPA26PN65;
 				INFOPLIST_FILE = AddressBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

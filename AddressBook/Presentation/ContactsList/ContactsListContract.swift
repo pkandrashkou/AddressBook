@@ -1,15 +1,9 @@
-//
-//  ContactsListContract.swift
-//  AddressBook
-//
-//  Created by Pavel Kondrashkov on 11/5/19.
-//  Copyright © 2019 Touchlane. All rights reserved.
-//
-
 import UIKit
+import RealmSwift
 
 protocol ContactsListDependency {
     var parent: UINavigationController { get }
+    var realm: Realm { get }
 }
 
 protocol ContactsListCoordinator: AnyObject {
