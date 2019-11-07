@@ -7,6 +7,8 @@ final class ContactsListViewController: UIViewController {
     private let noContactsView = ContactsListNoContactsView()
 
     var viewModel: ContactsListViewModel!
+    let search = BehaviorRelay(value: "")
+
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -19,11 +21,21 @@ final class ContactsListViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.title = "Contacts"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+
+        let search = UISearchController(searchResultsController: nil)
+        search.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        search.searchResultsUpdater = self
+        self.navigationItem.searchController = search
     }
 
     private func bindViewModel() {
         navigationItem.rightBarButtonItem?.rx.tap
             .bind(to: viewModel.input.addContactTrigger)
+            .disposed(by: disposeBag)
+
+        search
+            .bind(to: viewModel.input.search)
             .disposed(by: disposeBag)
 
         tableView.rx.itemSelected
@@ -56,7 +68,9 @@ final class ContactsListViewController: UIViewController {
         case .contacts:
             view.addSubview(tableView)
             tableView.snp.makeConstraints {
-                $0.edges.equalToSuperview()
+//                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+                $0.top.equalToSuperview()
+                $0.leading.trailing.bottom.equalToSuperview()
             }
         case .noContacts:
             view.addSubview(noContactsView)
@@ -66,5 +80,11 @@ final class ContactsListViewController: UIViewController {
                 $0.trailing.lessThanOrEqualToSuperview()
             }
         }
+    }
+}
+
+extension ContactsListViewController: UISearchResultsUpdating {
+    public func updateSearchResults(for searchController: UISearchController) {
+        search.accept(searchController.searchBar.text ?? "")
     }
 }

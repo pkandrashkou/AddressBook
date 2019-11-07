@@ -79,7 +79,9 @@ final class AddContactViewController: UIViewController {
 
         firstNameTextField.textField.placeholder = "First Name"
         lastNameTextField.textField.placeholder = "Last Name"
+        emailTextField.textField.keyboardType = .emailAddress
         emailTextField.textField.placeholder = "Email"
+        phoneNumberTextField.textField.keyboardType = .phonePad
         phoneNumberTextField.textField.placeholder = "Phone"
         addressTextView.textField.placeholder = "Address"
 

@@ -28,9 +28,10 @@ final class ContactTextFieldRow: UIView {
         textField.font = Font.caption
         addSubview(textField)
         textField.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(12)
+            $0.top.equalToSuperview().offset(8)
+            $0.height.equalTo(24)
             $0.leading.equalToSuperview().offset(16)
-            $0.bottom.equalToSuperview().offset(-12)
+            $0.bottom.equalToSuperview().offset(-8)
         }
 
         textField.rx.controlEvent(.editingDidBegin)
@@ -78,7 +79,7 @@ final class ContactTextFieldRow: UIView {
         addSubview(separator)
         separator.snp.makeConstraints {
             $0.leading.equalTo(textField.snp.leading)
-            $0.trailing.equalToSuperview()
+            $0.trailing.equalTo(clearButton.snp.trailing)
             $0.bottom.equalToSuperview()
         }
     }

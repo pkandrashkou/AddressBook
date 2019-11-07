@@ -17,6 +17,7 @@ final class ContactsListViewModel {
     struct Input {
         let addContactTrigger: AnyObserver<Void>
         let selectTrigger: AnyObserver<IndexPath>
+        let search: AnyObserver<String>
     }
 
     struct Output {
@@ -26,6 +27,7 @@ final class ContactsListViewModel {
 
     private let addContactSubject = PublishSubject<Void>()
     private let selectedItemSubject = PublishSubject<IndexPath>()
+    private let searchSubject = PublishSubject<String>()
 
     private let disposeBag = DisposeBag()
 
@@ -36,14 +38,26 @@ final class ContactsListViewModel {
 
         let contacts = interactor.fetchContacts()
             .share(replay: 1)
+            .debug("contacts")
 
         let state = contacts
             .map { contacts -> State in contacts.isEmpty ? .noContacts : .contacts }
             .startWith(.loading)
             .asDriver(onErrorJustReturn: .noContacts)
 
+        let search = searchSubject
+            .startWith("")
+            .debug("search")
+            .distinctUntilChanged()
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+
         let items = contacts
             .map { $0.map { ContactsListTableItem(id: $0.id, title: "\($0.firstName) \($0.lastName ?? "")")} }
+
+        let filteredItems = Observable
+            .combineLatest(items, search) { items, filter in
+                items.filter{ $0.title.lowercased().hasPrefix(filter.lowercased()) }
+            }
             .asDriver(onErrorJustReturn: [])
 
         selectedItemSubject
@@ -64,9 +78,13 @@ final class ContactsListViewModel {
 
         output = Output(
             state: state,
-            items: items
+            items: filteredItems
         )
 
-        input = Input(addContactTrigger: addContactSubject.asObserver(), selectTrigger: selectedItemSubject.asObserver())
+        input = Input(
+            addContactTrigger: addContactSubject.asObserver(),
+            selectTrigger: selectedItemSubject.asObserver(),
+            search: searchSubject.asObserver()
+        )
     }
 }

@@ -2,12 +2,6 @@ import RxSwift
 import RxCocoa
 
 final class AddContactViewModel {
-    private let interactor: AddContactInteractor
-    private let router: AddContactRouter
-
-    let input: Input
-    let output: Output
-
     enum State {
         enum Fields {
             case firstName
@@ -19,6 +13,22 @@ final class AddContactViewModel {
         case valid
         case requiredFieldsMissing([Fields])
     }
+    
+    private let interactor: AddContactInteractor
+    private let router: AddContactRouter
+
+    private let saveSubject = PublishSubject<Void>()
+    private let emailEndEditingSubject = PublishSubject<Void>()
+    private let cancelSubject = PublishSubject<Void>()
+
+    private let firstNameSubject = ReplaySubject<String>.create(bufferSize: 1)
+    private let secondNameSubject = ReplaySubject<String>.create(bufferSize: 1)
+    private let emailSubject = ReplaySubject<String>.create(bufferSize: 1)
+    private let phoneNumberSubject = ReplaySubject<String>.create(bufferSize: 1)
+    private let addressSubject = ReplaySubject<String>.create(bufferSize: 1)
+
+    var input: Input!
+    var output: Output!
 
     struct Input {
         let saveTrigger: AnyObserver<Void>
@@ -38,75 +48,43 @@ final class AddContactViewModel {
         let closed: Driver<Void>
     }
 
-    private let saveSubject = PublishSubject<Void>()
-    private let emailEndEditingSubject = PublishSubject<Void>()
-    private let cancelSubject = PublishSubject<Void>()
-
-    private let firstNameSubject = ReplaySubject<String>.create(bufferSize: 1)
-    private let secondNameSubject = ReplaySubject<String>.create(bufferSize: 1)
-    private let emailSubject = ReplaySubject<String>.create(bufferSize: 1)
-    private let phoneNumberSubject = ReplaySubject<String>.create(bufferSize: 1)
-    private let addressSubject = ReplaySubject<String>.create(bufferSize: 1)
-    
-/// TODO refactor a bit
     init(interactor: AddContactInteractor, router: AddContactRouter) {
         self.interactor = interactor
         self.router = router
-        let firstNameValidation = firstNameSubject.asObservable()
-            .map { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
 
-        let emailValidation = emailSubject.asObservable()
-            .flatMap { interactor.validate(email: $0).asObservable() }
+        input = Input(
+            saveTrigger: saveSubject.asObserver(),
+            endEditingEmail: emailEndEditingSubject.asObserver(),
+            cancelTrigger: cancelSubject.asObserver(),
+            firstName: firstNameSubject.asObserver(),
+            secondName: secondNameSubject.asObserver(),
+            email: emailSubject.asObserver(),
+            phoneNumber: phoneNumberSubject.asObserver(),
+            address: addressSubject.asObserver()
+        )
 
-        let phoneValidation = phoneNumberSubject.asObservable()
-            .map { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
-
-        let requiredFields = Observable.combineLatest(
-            firstNameValidation.startWith(false),
-            emailValidation.startWith(false),
-            phoneValidation.startWith(false)
-            )
-            .map { isFirstNameValid, isEmailValid, isPhoneValid -> State in
-                var invalidaFields: [State.Fields] = []
-                if !isFirstNameValid {
-                    invalidaFields.append(.firstName)
-                }
-                if !isEmailValid {
-                    invalidaFields.append(.email)
-                }
-                if !isPhoneValid {
-                    invalidaFields.append(.phoneNumber)
-                }
-                if !invalidaFields.isEmpty {
-                    return .requiredFieldsMissing(invalidaFields)
-                } else {
-                    return .valid
-                }
-            }
+        let requiredFields = requiredFieldsState(
+            firstName: firstNameSubject.asObservable(),
+            email: emailSubject.asObservable(),
+            phone: phoneNumberSubject.asObservable(),
+            emailValidator: interactor.validate
+        )
 
         let state = saveSubject
             .withLatestFrom(requiredFields) { $1 }
             .asDriver(onErrorJustReturn: .empty)
 
         let isEmailValidEditing = emailEndEditingSubject
-            .withLatestFrom(emailValidation)
+            .withLatestFrom(emailSubject.flatMap { interactor.validate(email: $0) })
             .asDriver(onErrorJustReturn: false)
 
-        let form = Observable.combineLatest(
-            firstNameSubject.startWith(""),
-            secondNameSubject.startWith(""),
-            emailSubject.startWith(""),
-            phoneNumberSubject.startWith(""),
-            addressSubject.startWith("")
-            ).map { firstName, lastName, email, phone, address in
-                return NewContact(
-                    firstName: firstName,
-                    lastName: lastName.isEmpty ? nil : lastName,
-                    email: email,
-                    phoneNumber: phone,
-                    address: address.isEmpty ? nil : address
-                )
-        }
+        let newContact = self.newContact(
+            firstName: firstNameSubject.asObservable(),
+            secondName: secondNameSubject.asObservable(),
+            email: emailSubject.asObservable(),
+            phoneNumber: phoneNumberSubject.asObservable(),
+            address: addressSubject.asObservable()
+        )
 
         let saved = saveSubject
             .withLatestFrom(state) { (_, state: State) -> Bool in
@@ -114,7 +92,7 @@ final class AddContactViewModel {
                 return true
             }
             .skipWhile { $0 == false }
-            .withLatestFrom(form) { $1 }
+            .withLatestFrom(newContact) { $1 }
             .flatMap { interactor.saveContact(contact: $0) }
             .map { _ in return () }
             .do(onNext: {
@@ -133,16 +111,58 @@ final class AddContactViewModel {
             isEmailValid: isEmailValidEditing,
             closed: Driver.merge(saved, canceled)
         )
-
-        input = Input(
-            saveTrigger: saveSubject.asObserver(),
-            endEditingEmail: emailEndEditingSubject.asObserver(),
-            cancelTrigger: cancelSubject.asObserver(),
-            firstName: firstNameSubject.asObserver(),
-            secondName: secondNameSubject.asObserver(),
-            email: emailSubject.asObserver(),
-            phoneNumber: phoneNumberSubject.asObserver(),
-            address: addressSubject.asObserver()
-        )
     }
+}
+
+private extension AddContactViewModel {
+    func requiredFieldsState(firstName: Observable<String>,
+                                     email: Observable<String>,
+                                     phone: Observable<String>,
+                                     emailValidator: @escaping (_ email: String) -> Single<Bool>) -> Observable<State> {
+        let firstNameValidation = firstName
+            .map { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
+        let emailValidation = email
+            .flatMap { emailValidator($0) }
+        let phoneValidation = phoneNumberSubject.asObservable()
+            .map { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
+
+        return Observable.combineLatest(
+            firstNameValidation.startWith(false),
+            emailValidation.startWith(false),
+            phoneValidation.startWith(false)
+            )
+            .map { isFirstNameValid, isEmailValid, isPhoneValid -> State in
+                var invalidaFields: [State.Fields] = []
+                if !isFirstNameValid { invalidaFields.append(.firstName) }
+                if !isEmailValid { invalidaFields.append(.email) }
+                if !isPhoneValid { invalidaFields.append(.phoneNumber) }
+                guard invalidaFields.isEmpty else {
+                    return .requiredFieldsMissing(invalidaFields)
+                }
+                return .valid
+            }.share(replay: 1)
+    }
+
+    func newContact(firstName: Observable<String>,
+                            secondName: Observable<String>,
+                            email: Observable<String>,
+                            phoneNumber: Observable<String>,
+                            address: Observable<String>) -> Observable<NewContact> {
+        return Observable.combineLatest(
+            firstName.startWith(""),
+            secondName.startWith(""),
+            email.startWith(""),
+            phoneNumber.startWith(""),
+            address.startWith("")
+            ).map { firstName, lastName, email, phone, address in
+                return NewContact(
+                    firstName: firstName,
+                    lastName: lastName.isEmpty ? nil : lastName,
+                    email: email,
+                    phoneNumber: phone,
+                    address: address.isEmpty ? nil : address
+                )
+            }.share(replay: 1)
+    }
+
 }
