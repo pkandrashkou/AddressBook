@@ -68,7 +68,6 @@ final class ContactsListViewController: UIViewController {
         case .contacts:
             view.addSubview(tableView)
             tableView.snp.makeConstraints {
-//                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
                 $0.top.equalToSuperview()
                 $0.leading.trailing.bottom.equalToSuperview()
             }

@@ -135,10 +135,6 @@ final class AddContactViewController: UIViewController {
         removeKeyboardNotification()
     }
 
-    deinit {
-        print("deinit AddContactViewController")
-    }
-
     private func updateState(state: AddContactViewModel.State) {
         switch state {
         case .empty:

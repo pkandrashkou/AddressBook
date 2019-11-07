@@ -19,8 +19,4 @@ final class ContactListInteractorImpl: ContactListInteractor {
     func searchContact(query: String) -> Observable<[Contact]> {
         fatalError()
     }
-
-    deinit {
-        print("ContactListInteractor")
-    }
 }

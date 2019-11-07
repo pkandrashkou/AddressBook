@@ -1,7 +1,7 @@
 import UIKit
 
 final class RootViewController: UINavigationController {
-    var router: RootRouter! /// shortcut
+    var router: RootRouter!
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -25,8 +25,4 @@ final class EmailValidationUseCaseImpl: EmailValidationUseCase {
 
         return true
     }
-
-    deinit {
-        print("EmailValidationUseCaseImpl")
-    }
 }

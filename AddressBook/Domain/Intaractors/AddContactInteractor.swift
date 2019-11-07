@@ -36,8 +36,4 @@ final class AddContactInteractorImpl: AddContactInteractor {
     func saveContact(contact: NewContact) -> Single<Contact> {
         return contactsRepository.saveContact(contact: contact)
     }
-
-    deinit {
-        print("AddContactInteractorImpl")
-    }
 }

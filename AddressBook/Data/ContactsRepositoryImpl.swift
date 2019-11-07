@@ -2,16 +2,11 @@ import RealmSwift
 import RxSwift
 import RxRealm
 
-/// TODO check docs
 final class ContactsRepositoryImpl: ContactsRepository {
     private let realm: Realm
 
     init(realm: Realm) {
         self.realm = realm
-    }
-
-    deinit {
-        print("ContactsRepositoryImpl")
     }
 
     func fetchContacts() -> Observable<[Contact]> {

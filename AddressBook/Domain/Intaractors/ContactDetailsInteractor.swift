@@ -14,8 +14,4 @@ final class ContactDetailsInteractorImpl: ContactDetailsInteractor {
     func fetchContact(id: String) -> Single<Contact> {
         return contactsRepository.fetchContact(id: id)
     }
-
-    deinit {
-        print("ContactDetailsInteractor")
-    }
 }

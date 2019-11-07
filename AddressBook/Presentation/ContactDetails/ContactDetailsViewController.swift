@@ -77,8 +77,4 @@ final class ContactDetailsViewController: UIViewController {
             self.address.label.text = contact.address
         }).disposed(by: disposeBag)
     }
-
-    deinit {
-        print("deinit ContactDetailsViewController")
-    }
 }
